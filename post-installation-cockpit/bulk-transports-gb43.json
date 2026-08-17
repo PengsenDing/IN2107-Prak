@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "profileId": "GB43_PATCHES",
+  "profileName": "Global Bike 4.3 Post-Installation Patches",
+  "description": "Ordered import of all required Global Bike 4.3 transport requests.",
+  "settings": {
+    "skipAlreadyImported": true
+  },
+  "transports": [
+    {
+      "sequence": 1,
+      "transportRequest": "E45K901742",
+      "description": "Implementation of SAP note 3627998",
+      "type": "Workbench",
+      "client": "000",
+      "comment": "ab Release GB 4.3 dabei"
+    },
+    {
+      "sequence": 2,
+      "transportRequest": "E45K901744",
+      "description": "Implementation of SAP note 3611184",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 3,
+      "transportRequest": "E45K901746",
+      "description": "Authorization Fix ESH Search",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 4,
+      "transportRequest": "E45K901749",
+      "description": "EHS DE als aktive Sprache pflegen",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 5,
+      "transportRequest": "E45K901751",
+      "description": "Authorization Fix incoming/outgoing payments",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 6,
+      "transportRequest": "SC1K900033",
+      "description": "S4S Client Copy Chain",
+      "type": "Workbench",
+      "client": "000",
+      "importOptions": {
+        "ignoreInvalidComponentVersion": true
+      },
+      "comment": "Nicht passende Komponentenversion ignorieren"
+    },
+    {
+      "sequence": 7,
+      "transportRequest": "E45K901753",
+      "description": "Adjust Launchpad for SD and rework for HCM",
+      "type": "Customizing",
+      "client": "999",
+      "comment": "ab 18.11.2025 hinzugekommen"
+    },
+    {
+      "sequence": 8,
+      "transportRequest": "E45K901755",
+      "description": "Modify catalog for SD",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 9,
+      "transportRequest": "E45K901757",
+      "description": "Adjust role (PP)",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 10,
+      "transportRequest": "E45K901761",
+      "description": "GBGO Explore Procurement",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 11,
+      "transportRequest": "E45K901774",
+      "description": "Authorization Default Values for ME80FN",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 12,
+      "transportRequest": "E45K901779",
+      "description": "Implementation of SAP note 3589346",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 13,
+      "transportRequest": "E45K901766",
+      "description": "GB Monitor PP BUG 6000023306",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 14,
+      "transportRequest": "E45K901768",
+      "description": "GB Monitor SD BUG 6000023318",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 15,
+      "transportRequest": "E45K901777",
+      "description": "Frontend zu 6000023342",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 16,
+      "transportRequest": "E45K901784",
+      "description": "GB Monitor HCM BUG 6000023464",
+      "type": "Workbench",
+      "client": "000",
+      "comment": "ab 01.12.2025 hinzugekommen"
+    },
+    {
+      "sequence": 17,
+      "transportRequest": "E45K901782",
+      "description": "Fixing Studentenmonitor",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 18,
+      "transportRequest": "E45K901786",
+      "description": "Fixing Studentenmonitor",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 19,
+      "transportRequest": "E45K901792",
+      "description": "GB Monitor HCM Bug Step3&6",
+      "type": "Workbench",
+      "client": "000",
+      "comment": "ab 01.04.2026 hinzugekommen"
+    },
+    {
+      "sequence": 20,
+      "transportRequest": "E45K901794",
+      "description": "GB Monitor Errorhandling PP_CHA",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 21,
+      "transportRequest": "E45K901801",
+      "description": "GB Monitor Bug Challenge SD calculating optional steps",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 22,
+      "transportRequest": "E45K901788",
+      "description": "GB Monitor 4.2 PS Bug 6000023473",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 23,
+      "transportRequest": "E45K901806",
+      "description": "Implementation of SAP note 3706203",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 24,
+      "transportRequest": "E45K901814",
+      "description": "Adjustments ZUSR Help Text",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    },
+    {
+      "sequence": 25,
+      "transportRequest": "E45K901808",
+      "description": "Change Role Z_S4HANA_EHS",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 26,
+      "transportRequest": "E45K901803",
+      "description": "Change Role Z_UCC_GBI_SCC_S4",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 27,
+      "transportRequest": "E45K901810",
+      "description": "Case study: CO-CCA average price",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 28,
+      "transportRequest": "E45K901812",
+      "description": "Translation of the Purchaser space in the Authorization",
+      "type": "Customizing",
+      "client": "999",
+      "comment": ""
+    },
+    {
+      "sequence": 29,
+      "transportRequest": "E45K901821",
+      "description": "LANG enUS Translation of the Purchaser space in the Authorization",
+      "type": "Workbench",
+      "client": "000",
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Tested with Python 3.12. The upper bound avoids untested major releases.
+streamlit>=1.61,<2

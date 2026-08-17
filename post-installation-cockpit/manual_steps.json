@@ -1,0 +1,133 @@
+{
+  "guides": [
+    {
+      "id": "run_sgen",
+      "title": "Manual step: Run and monitor SGEN",
+      "warning": "SGEN remains a SAP GUI activity and can run for several hours.",
+      "expanded": false,
+      "completion_key": "run_sgen_completed",
+      "completion_label": "I started SGEN for all available components and verified that the job completed successfully.",
+      "steps": [
+        {
+          "title": "Start SGEN",
+          "description": "In client `000`, open transaction `SGEN` and choose the option to generate all relevant objects.", 
+          "image": "license_sgen/sgen_1.png"
+        },
+        {
+          "title": "Select components",
+          "description": "Open **Components**, select all components currently available in the system, and continue. The exact number may differ from the older screenshot in the guide.", 
+          "image": "license_sgen/sgen_2.png"
+        },
+        {
+          "title": "Start the job",
+          "description": "Select the generated job and choose **Start job immediately**.", 
+          "image": "license_sgen/sgen_3.png"
+        },
+        {
+          "title": "Monitor completion",
+          "description": "Monitor the background job and generation log, for example with `SM37`, until it finishes. Resolve critical generation errors before confirming this todo.", 
+          "image": "license_sgen/sgen_4.png"
+        }
+      ]
+    },
+    {
+      "id": "sap_license_download",
+      "title": "Manual step: Generate and download the SAP license",
+      "warning": "Complete this manual step before running the license helper.",
+      "expanded": true,
+      "completion_key": "sap_license_download_completed",
+      "completion_label": "I downloaded the SAP license file and have it available for installation.",
+      "steps": [
+        {
+          "title": "Open SAP for Me",
+          "description": "Open **SAP for Me**, select **Services and Support**, and open **License Keys**.",
+          "image": "license_sgen/sap_for_me_1.png",
+          "caption": "Open Services and Support and License Keys.",
+          "alt": "SAP for Me navigation with the license-key application highlighted."
+        },
+        {
+          "title": "Select the installation",
+          "description": "Select the authorized customer, product **SAP S/4HANA**, and the correct installation number. ",
+          "image": "license_sgen/sap_for_me_4.png",
+          "caption": "Select the authorized installation.",
+          "alt": "SAP for Me installation selection form."
+        },
+        {
+          "title": "Add the system",
+          "description": "Add the target system with version **SAP S/4HANA 2023** and choose **Training system** as the system role.",
+          "image": "license_sgen/sap_for_me_6.png",
+          "caption": "Choose Training system.",
+          "alt": "Add New System form with Training system selected."
+        },
+        {
+          "title": "Generate the keys",
+          "description": "In SAP for Me, add **Standard - Web Application Server ABAP or ABAP+JAVA**, enter the hardware key, and generate the required keys.",
+          "image": "license_sgen/sap_for_me_8.png",
+          "caption": "Generate the required license keys.",
+          "alt": "SAP for Me license-key request form."
+        },
+        {
+          "title": "Download the license file",
+          "description": "Select both generated keys and download the `.txt` license file. Transfer it to the server using the approved secure process and keep the remote path available for the automation.", 
+          "image": "license_sgen/sap_for_me_9.png"
+        },
+        {
+          "title": "Remove old license key",
+          "description": "Open transaction `SLICENSE`, remove obsolete licenses before installing new license through automation.",
+          "image": "license_sgen/sap_for_me_7_delete.png",
+          "caption": "Remove obsolete license keys.",
+          "alt": "SAP SLICENSE screen with the hardware-key field."
+        }
+      ]
+    },
+    {
+      "id": "rz10_import_profile",
+      "title": "Manual step: Import the active instance profile",
+      "warning": "Complete this step before the profile automation is enabled.",
+      "expanded": false,
+      "completion_key": "rz10_import_profile_completed",
+      "completion_label": "I imported the active-server profiles in RZ10 and reviewed the import log.",
+      "steps": [
+        {
+          "title": "Open RZ10",
+          "description": "In client `000`, open transaction `RZ10`.",
+          "image": "profile/rz10_1.png"
+        },
+        {
+          "title": "Import active profiles",
+          "description": "Choose **Utilities → Import profiles → Of active servers**.",
+          "image": "profile/rz10_2.png"
+        },
+        {
+          "title": "Review the result",
+          "description": "Confirm that the expected profile following `<SID>_D<PAS instance number>_<hostname>` was imported. Stop and resolve serious errors before continuing."
+        }
+      ]
+    },
+    {
+      "id": "rz10_delete_old_profiles",
+      "title": "Manual step: Delete obsolete source-system profiles",
+      "warning": "Deleting the wrong profile can prevent the SAP system from starting. Complete this step before profile automation is enabled.",
+      "expanded": false,
+      "completion_key": "rz10_delete_old_profiles_completed",
+      "completion_label": "I removed the obsolete source-system profiles and verified the remaining profile list.",
+      "steps": [
+        {
+          "title": "Open the profile list",
+          "description": "In `RZ10`, open the profile selection list and identify profiles inherited from the export/source system.",
+          "image": "profile/rz10_3.png"
+        },
+        {
+          "title": "Delete each obsolete profile",
+          "description": "For each confirmed obsolete profile, choose **Profile → Delete → All versions → Of one profile**. Do not delete profiles whose ownership is unclear.",
+          "image": "profile/rz10_4.png"
+        },
+        {
+          "title": "Verify the remaining profiles",
+          "description": "Confirm that only `DEFAULT` and the profiles matching the current target SID and hostname remain.",
+          "image": "profile/rz10_5.png"
+        }
+      ]
+    }
+  ]
+}

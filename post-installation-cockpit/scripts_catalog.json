@@ -1,0 +1,270 @@
+{
+  "default_timeout_seconds": 300,
+  "scripts": [
+    {
+      "id": "hana_1_1_1_2",
+      "label": "Update HANA SYSTEM password and global_allocation_limit",
+      "description": "Automates the first HANA post-installation tasks from the guide: changing the tenant SYSTEM user password to the UCC standard pattern and setting the HANA global_allocation_limit. Enter the SID, SID number, tenant, host, SQL ports, total LPAR RAM, system type, and current SYSTEM password. Run with 'Execute changes' disabled first to review the calculated values and intended actions. When enabled, the script should apply the changes on the remote server and print a clear execution log. After the run, verify the new SYSTEM password with HANA Studio or an SQL client and confirm the allocation limit in SystemDB configuration. If the script fails, use the manual HANA Studio fallback described in the step descriptions.",
+      "path": "/opt/postinstall/01_hana_1_1_1_2.sh",
+      "timeout_seconds": 600,
+      "parameters": [
+        {
+          "name": "sid",
+          "label": "SID",
+          "type": "text",
+          "default": "S30",
+          "required": true,
+          "flag": "--sid"
+        },
+        {
+          "name": "sidnr",
+          "label": "SID number",
+          "type": "text",
+          "default": "30",
+          "required": true,
+          "flag": "--sidnr"
+        },
+        {
+          "name": "tenant",
+          "label": "Tenant",
+          "type": "text",
+          "default": "S30",
+          "required": true,
+          "flag": "--tenant"
+        },
+        {
+          "name": "dbhost",
+          "label": "DB host",
+          "type": "text",
+          "default": "",
+          "required": true,
+          "flag": "--dbhost"
+        },
+        {
+          "name": "tenant_sql_port",
+          "label": "Tenant SQL port",
+          "type": "text",
+          "default": "30015",
+          "required": true,
+          "flag": "--tenant-sql-port"
+        },
+        {
+          "name": "systemdb_sql_port",
+          "label": "SystemDB SQL port",
+          "type": "text",
+          "default": "30013",
+          "required": true,
+          "flag": "--systemdb-sql-port"
+        },
+        {
+          "name": "total_ram_mb",
+          "label": "Total RAM (MB)",
+          "type": "number",
+          "default": 128000,
+          "required": true,
+          "flag": "--total-ram-mb"
+        },
+        {
+          "name": "system_type",
+          "label": "System type",
+          "type": "select",
+          "default": "exclusive",
+          "options": [
+            "exclusive",
+            "shared"
+          ],
+          "required": true,
+          "flag": "--system-type"
+        },
+        {
+          "name": "old_system_password",
+          "label": "Old SYSTEM password",
+          "type": "password",
+          "flag": "--old-system-password",
+          "help": "Demo only. Any value is accepted.",
+          "default": ""
+        },
+        {
+          "name": "new_system_password",
+          "label": "New SYSTEM password",
+          "type": "password",
+          "help": "UCC standard pattern; see the team password manager. Sent to the script via stdin, never as an argument.",
+          "default": ""
+        },
+        {
+          "name": "execute",
+          "label": "Execute changes",
+          "type": "checkbox",
+          "flag": "--execute",
+          "default": false,
+          "help": "Demo mode simulates execution."
+        }
+      ]
+    },
+    {
+      "id": "profiles_1_3_5",
+      "label": "Install Profiles",
+      "description": "Applies the DEFAULT and instance profile parameters required for the S/4HANA GB 4.3 post-installation baseline. Enter the target SID, client, system type, PAS instance number, and current instance profile path. Select exclusive or shared carefully because memory and work process parameters differ. Run a dry run first, review every planned parameter change, then enable 'Execute changes' only when the imported profile list has been cleaned up in RZ10 and the profile path points to the current system. Optionally stop the application server after the change if you are continuing with transport-system OS preparation. Afterward, verify the profiles in RZ10 and archive changed application-server profiles according to the operations process.",
+      "path": "/opt/postinstall/02_profiles_1_3_5.sh",
+      "timeout_seconds": 600,
+      "parameters": [
+        {
+          "name": "sid",
+          "label": "SID",
+          "type": "text",
+          "default": "S30",
+          "required": true,
+          "flag": "--sid"
+        },
+        {
+          "name": "client",
+          "label": "Client",
+          "type": "text",
+          "default": "300",
+          "required": true,
+          "flag": "--client"
+        },
+        {
+          "name": "system_type",
+          "label": "System type",
+          "type": "select",
+          "default": "exclusive",
+          "options": [
+            "exclusive",
+            "shared"
+          ],
+          "required": true,
+          "flag": "--system-type"
+        },
+        {
+          "name": "pas_nr",
+          "label": "PAS instance number",
+          "type": "text",
+          "default": "00",
+          "required": true,
+          "flag": "--pas-nr"
+        },
+        {
+          "name": "profile_dir",
+          "label": "Profile directory",
+          "type": "text",
+          "default": "",
+          "flag": "--profile-dir",
+          "help": "Optional. Demo accepts any path."
+        },
+        {
+          "name": "instance_profile",
+          "label": "Instance profile",
+          "type": "text",
+          "default": "",
+          "required": true,
+          "flag": "--instance-profile"
+        },
+        {
+          "name": "execute",
+          "label": "Execute changes",
+          "type": "checkbox",
+          "flag": "--execute",
+          "default": false
+        },
+        {
+          "name": "stop_as",
+          "label": "Stop AS after changes",
+          "type": "checkbox",
+          "flag": "--stop-as",
+          "default": false,
+          "help": "Demo simulates sapcontrol StopSystem."
+        }
+      ]
+    },
+    {
+      "id": "license_and_sgen_helper",
+      "label": "Install License and SGEN helper",
+      "description": "Helper for the SAP GUI based SGEN and license steps. SGEN itself remains manual in transaction SGEN and can run for several hours. License generation in SAP for Me is also manual: create or select the system, enter the hardware key, generate both license keys, and download the license file. This helper can document the boundary, simulate hardware-key output, and install or validate a provided license file depending on the implementation behind the demo script. Use it as guidance, not as a replacement for the SAP for Me and SAP GUI checks. The step is complete only when SGEN finishes successfully and SLICENSE shows valid licenses.",
+      "path": "/opt/postinstall/03_license_and_sgen_1_3_helper.sh",
+      "timeout_seconds": 600,
+      "parameters": [
+        {
+          "name": "sid",
+          "label": "SID",
+          "type": "text",
+          "default": "S30",
+          "required": true,
+          "flag": "--sid"
+        },
+        {
+          "name": "pas_nr",
+          "label": "PAS instance number",
+          "type": "text",
+          "default": "00",
+          "required": true,
+          "flag": "--pas-nr"
+        },
+        {
+          "name": "instance_profile",
+          "label": "Instance profile",
+          "type": "text",
+          "default": "",
+          "required": true,
+          "flag": "--instance-profile"
+        },
+        {
+          "name": "license_file",
+          "label": "License file",
+          "type": "text",
+          "flag": "--license-file",
+          "default": "",
+          "help": "Demo accepts any path."
+        },
+        {
+          "name": "execute",
+          "label": "Execute changes",
+          "type": "checkbox",
+          "flag": "--execute",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "hana_backup_setup",
+      "label": "HANA Backup automation",
+      "description": "Runs the existing UCC IBM Storage Protect / SAP HANA backup setup script remotely over SSH. It uses the script's default TSM node password and automates only steps 1 and 2; complete steps 3-7 manually afterwards.",
+      "path": "/global/sapcd/scripts/HANA/hanaSetupBackup_v5.sh",
+      "timeout_seconds": 3600,
+      "parameters": [
+        {
+          "name": "sid",
+          "label": "HANA SID",
+          "type": "text",
+          "default": "",
+          "required": true,
+          "flag": "--sid"
+        },
+        {
+          "name": "ip",
+          "label": "HANA host IP address",
+          "type": "text",
+          "default": "",
+          "required": true,
+          "flag": "--ip"
+        },
+        {
+          "name": "node",
+          "label": "TSM server node",
+          "type": "text",
+          "default": "",
+          "required": true,
+          "flag": "--node"
+        },
+        {
+          "name": "restart_section",
+          "label": "Restart at section",
+          "type": "text",
+          "default": "",
+          "flag": "-j",
+          "help": "Optional. Enter 3 only to resume at TDP installation after a failed prior run."
+        }
+      ]
+    }
+  ]
+}

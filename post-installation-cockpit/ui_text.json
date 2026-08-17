@@ -1,0 +1,23 @@
+{
+  "page": {
+    "title": "Post-Installation Cockpit for SAP UCC",
+    "caption": "Guided GB 4.3 post-installation for SAP S/4HANA systems: wiki-ordered steps, allowlisted automation, controlled execution."
+  },
+  "sidebar": {
+    "navigation_title": "SAP navigation",
+    "navigation_caption": "Select a system once; the same selection is used by SAP GUI report launchers.",
+    "ssh_title": "SSH connection"
+  },
+  "manual": {
+    "missing": "The mandatory manual guide is not configured.",
+    "complete": "I downloaded the SAP license file and have it available for installation.",
+    "required": "Complete and confirm the manual SAP license-download step first."
+  },
+  "common": {
+    "run": "Run",
+    "parameters": "Parameters",
+    "no_scripts": "No matching automation scripts are configured.",
+    "remote_run": "Runs with SSH on the remote server.",
+    "copy_script": "Copy this script to the remote server"
+  }
+}

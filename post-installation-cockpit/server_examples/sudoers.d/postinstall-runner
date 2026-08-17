@@ -1,0 +1,7 @@
+# Install as: /etc/sudoers.d/postinstall-runner
+# Validate before use: sudo visudo -cf /etc/sudoers.d/postinstall-runner
+# Replace deployuser if you use a different SSH user.
+
+deployuser ALL=(root) NOPASSWD: /opt/postinstall/10_setup_users.sh
+deployuser ALL=(root) NOPASSWD: /opt/postinstall/20_install_packages.sh
+deployuser ALL=(root) NOPASSWD: /opt/postinstall/30_configure_firewall.sh

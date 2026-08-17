@@ -1,0 +1,3496 @@
+{
+  "source": {
+    "title": "HowTo: S/4HANA2023 GB 4.3 Post-Installation Configuration",
+    "url": "https://collab.dvb.bayern/pages/viewpage.action?pageId=1895309660"
+  },
+  "automatedStepsOmitted": [
+    "Patches installieren / Transportaufträge (TA) einspielen",
+    "Frontend-Druck-Bug beheben",
+    "Mandanten anlegen und Mandantenkopien einplanen",
+    "HANA Backup: Installationsschritte 1 und 2"
+  ],
+  "sections": [
+    {
+      "title": "Kacheln für die Dozenten anpassen",
+      "intro": "Die manuelle Kachelanpassung folgt dem verlinkten Wiki-Artikel vollständig.",
+      "pages": [
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "In der S/4HANA GB 4.2 Version kann ein Teach-User die Kachel Self Services zu seinem Fiori Launchpad hinzufügen."
+            },
+            {
+              "kind": "markdown",
+              "text": "Diese Kachel sollte an das Portal des UCC München verlinken, hier ist allerdings der Link vom UCC Magdeburg hinterlegt."
+            },
+            {
+              "kind": "markdown",
+              "text": "Die Kachel kann mit den folgenden Schritten angepasst werden:"
+            },
+            {
+              "kind": "markdown",
+              "text": "1. Anmelden am System per SAP GUI **und** über Fiori mit dem User master-adm"
+            },
+            {
+              "kind": "markdown",
+              "text": "2. In der Transaktion SCC4 den Bearbeitungsmodus(oben links) aktivieren, deinen Mandanten auswählen, die (im Bild rot markierten) Änderungen erlauben und danach sichern(dies kann danach wieder umgestellt werden, lasse das Fenster am besten gleich offen und im Bearbeitungsmodus)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/957298377/image-2024-9-12_13-52-51.png?version=1&modificationDate=1726141971857&api=v2",
+              "path": "images/post_transport/instructor-tiles/01-image-2024-9-12_13-52-51.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "3.Fiori Launchpad Designer über Transaktion /N/UI2/FLPD_CUST in öffnen und gegeben falls den Link anpassen."
+            },
+            {
+              "items": [
+                "Alternativ kannst du auch direkt den Link aufrufen: https://<sid>.gb.ucc.cit.tum.de/sap/bc/ui5_ui5/sap/arsrvc_upb_admn/main.html?scope=CUST&sap-client=<client-nr>&sap-language=DE"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "items": [
+                "Link kann beispielsweise folgendermaßen aussehen: [https://s30.gb.ucc.cit.tum.de/sap/bc/ui5_ui5/sap/arsrvc_upb_admn/main.html?scope=CUST&sap-client=999&sap-language=DE](https://s30.gb.ucc.cit.tum.de/sap/bc/ui5_ui5/sap/arsrvc_upb_admn/main.html?scope=CUST&sap-client=999&sap-language=DE)"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "kind": "markdown",
+              "text": "4. Nach Katalog ZUCC_MASTER_C suchen über das im Screenshot markierte Suchfeld suchen. Danach auf den Katalog klicken, erst hier erhält man die Ansicht des Screenshots."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/957298377/image-2024-9-12_13-43-46.png?version=1&modificationDate=1726141426917&api=v2",
+              "path": "images/post_transport/instructor-tiles/02-image-2024-9-12_13-43-46.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "5. Auf die Kachel Self Services klicken"
+            },
+            {
+              "kind": "markdown",
+              "text": "6. Hier im Feld Ziel-URL den gewünschten URL einfügen und auf Sichern klicken"
+            },
+            {
+              "kind": "markdown",
+              "text": "Für das UCC Portal ist dies: [https://i04.sapucc.in.tum.de/portal/](https://i04.sapucc.in.tum.de/portal/)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/957298377/image-2024-9-12_13-47-48.png?version=1&modificationDate=1726141668897&api=v2",
+              "path": "images/post_transport/instructor-tiles/03-image-2024-9-12_13-47-48.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Mögliche Fehlermeldung"
+            },
+            {
+              "kind": "markdown",
+              "text": "Es kann sein, dass beim Versuch des Sicherns die folgende Meldung auftritt:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/957298377/image-2024-9-12_13-51-21.png?version=1&modificationDate=1726141881853&api=v2",
+              "path": "images/post_transport/instructor-tiles/04-image-2024-9-12_13-51-21.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Ursache ist hier, dass die Einstellung in der SCC4 nicht passen."
+            },
+            {
+              "kind": "markdown",
+              "text": "Setze, wenn du fertig bist, nun wieder die Änderungen und Transporte in der Transaktion SCC4  auf \"keine Änderungen erlaubt\"."
+            }
+          ],
+          "title": "How To: Link in der Kachel Self Services anpassen",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/957298377/How+To+Link+in+der+Kachel+Self+Services+anpassen"
+        }
+      ]
+    },
+    {
+      "title": "Externe Dienste",
+      "intro": "Binde das Fiori Launchpad in den UCC SAP Webdispatcher ein und pflege das System in beiden Saproutern.",
+      "pages": [
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "Dieser Artikel erklärt dir, wie du ein System im Webdispatcher registrieren kannst, sodass es eine *sapucc.in.tum.de Adresse als URL mit gültigem SSL-Zertifikat erhält."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "System im Webdispatcher registrieren"
+            },
+            {
+              "kind": "markdown",
+              "text": "Verbinde dich auf den Webdispatcher, dem du ein System hinzufügen willst. Die Adressen zu allen UCC Webdispatchern findest du hier: [SAPUCC Webdispatchers](https://collab.dvb.bayern/spaces/TUMucc/pages/67917904/SAPUCC+Webdispatchers)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wechlse hier in das Verzeichnis /sap/<SID>/sapmnt/profile/ und editiere die Profildatei Datei <SID>_W<Instanznummer>_<SID> (das ist im Endeffekt die Datei, die nicht die *Default*-Datei ist):"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/grafik.png?version=1&modificationDate=1659360930733&api=v2",
+              "path": "images/post_transport/webdispatcher/01-grafik.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Füge hier folgende Einträge hinzu (SID anpassen!!!!), orientiere dich am besten direkt an den anderen Einträgen in der Datei:"
+            },
+            {
+              "kind": "code",
+              "text": "#Bei den Backend-Systems\nwdisp/system_xxx = SID=EXT, EXTSRV=http://<sid>lp1.ucc.in.tum.de:8000, SSL_ENCRYPT=0, SRCVHOST=<neue Adressen>\n\n#Bei den Redirects\nicm/HTTP/redirect_xxx = PREFIX=/, FOR=<neue Adresse>, FROMPROT=http, PROT=https, HOST=<neue Adresse>\n\n#Wenn Fiori-Launchpad gewünscht GBI 4.0 und drunter:\nicm/HTTP/redirect_xxx = PREFIX=/, FOR=<neue Adresse>, FROMPROT=https, TO=/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html\n\n#Wenn Fiori-Launchpad gewünscht GBI 4.1 und drüber:\nicm/HTTP/redirect_xxx = PREFIX=/, FOR=<neue Adresse>, FROMPROT=https, TO=/sap/bc/ui2/flp\n\n#Wenn Webgui gewünscht:\nicm/HTTP/redirect_xxx = PREFIX=/, FOR=<neue Adresse>, FROMPROT=https, TO=/sap/bc/gui/sap/its/webgui"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/dp1.png?version=1&modificationDate=1659361590670&api=v2",
+              "path": "images/post_transport/webdispatcher/02-dp1.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/bp2.png?version=1&modificationDate=1659361599770&api=v2",
+              "path": "images/post_transport/webdispatcher/03-bp2.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Speichere nun die Datei."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Aktivierung der neuen Konfiguration"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn der Parameter wdisp/config_reload = TRUE gesetzt ist, muss der Webdispatcher nicht neugestartet werden, um die neue Konfiguration zu aktivieren!"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Möglichkeit 1"
+            },
+            {
+              "kind": "markdown",
+              "text": "Verbinde dich über SSH auf den Webdispatcher und führe folgende Befehle aus:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsu - <sid> adm\ncd /sapmnt/<SID>/profile/\n# mit ls kannst du den Namen des Profils nachschauen\nsapwebdisp pf=<SID>_W<sidnr>_<hostname> -reconfig profile"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Möglichkeit 2"
+            },
+            {
+              "kind": "markdown",
+              "text": "Gehe über einen Browser in das Administration Dashboard. Den Link findest du hier: [SAPUCC Webdispatchers](https://collab.dvb.bayern/spaces/TUMucc/pages/67917904/SAPUCC+Webdispatchers)"
+            },
+            {
+              "kind": "markdown",
+              "text": "z.B. [https://wd1.ucc.cit.tum.de/sap/wdisp/admin/public/default.html](https://wd1.ucc.cit.tum.de/sap/wdisp/admin/public/default.html)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Melde dich mit dem Benutzer webadm an (Passwort:Keepass)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke auf das Statusfeld und wähle **Reload Configuration**"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/image-2025-6-27_15-57-19.png?version=1&modificationDate=1751032639767&api=v2",
+              "path": "images/post_transport/webdispatcher/04-image-2025-6-27_15-57-19.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Bestätige den Vorgang"
+            },
+            {
+              "kind": "markdown",
+              "text": "Damit solltest du das neu registrierte System über die Webdispatcher-Adresse erreichen können."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/image-2024-5-7_10-28-31.png?version=1&modificationDate=1715070511690&api=v2",
+              "path": "images/post_transport/webdispatcher/05-image-2024-5-7_10-28-31.png"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Webdispatcher sapucc neustarten Nur wenn wdisp/config_reload = FALSE !!"
+            },
+            {
+              "kind": "markdown",
+              "text": "*Diese Anleitung gilt nur für die älteren Webdispatcher.*"
+            },
+            {
+              "kind": "markdown",
+              "text": "Logge dich nun via PuTTY auf [sapucc.in.tum.de](http://sapucc.in.tum.de/) (User: root, PW: Standardpasswort in Keepass)."
+            },
+            {
+              "kind": "markdown",
+              "text": "Starte hier den Webdispatcher neu, um die Änderung wirksam werden zu lassen:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n# in user uccadm wechseln\nsu - uccadm\n# webdispatcher stoppen\nstopsap\n# webdispatcher wieder starten\nstartsap"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/bp3.png?version=1&modificationDate=1659363728020&api=v2",
+              "path": "images/post_transport/webdispatcher/06-bp3.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Damit solltest du das neu registrierte System über die Webdispatcher-Adresse <sid>.sapucc.in.tum.de erreichen können."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/bp4.png?version=1&modificationDate=1659363826157&api=v2",
+              "path": "images/post_transport/webdispatcher/07-bp4.png"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Webdispatcher WD1-WD4 neustarten Nur wenn wdisp/config_reload = FALSE !!"
+            },
+            {
+              "kind": "markdown",
+              "text": "*Diese Anleitung gilt nur für die neueren Webdispatcher*"
+            },
+            {
+              "kind": "markdown",
+              "text": "Logge dich nun via PuTTY auf [sapucc.in.tum.de](http://sapucc.in.tum.de/) (User: root, PW: Standardpasswort in Keepass)."
+            },
+            {
+              "kind": "markdown",
+              "text": "Starte hier den Webdispatcher neu, um die Änderung wirksam werden zu lassen:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n# in user uccadm wechseln\nsu - wd<X>adm\n# webdispatcher stoppen\nsapcontrol -nr 00 -function StopSystem\n# webdispatcher wieder starten\nsapcontrol -nr 00 -function StartSystem"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918676/image-2024-5-7_10-27-31.png?version=1&modificationDate=1715070451377&api=v2",
+              "path": "images/post_transport/webdispatcher/08-image-2024-5-7_10-27-31.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Damit solltest du das neu registrierte System über die Webdispatcher-Adresse erreichen können."
+            }
+          ],
+          "title": "HowTo: System in Webdispatcher registrieren",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67918676/HowTo+System+in+Webdispatcher+registrieren"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Auf den Saprouter verbinden"
+            },
+            {
+              "kind": "markdown",
+              "text": "Den Saprouter erreichst du (zum Beispiel via Putty) unter der"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Adresse:** [uccsaprouter.in.tum.de](http://uccsaprouter.in.tum.de/)"
+            },
+            {
+              "kind": "markdown",
+              "text": "**User:** root"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Passwort:** <Standardpasswort> (siehe Keepass)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Saprouter starten/stoppen"
+            },
+            {
+              "kind": "markdown",
+              "text": "[HowTo: Saprouter Power 8 starten/stoppen](https://collab.dvb.bayern/spaces/TUMucc/pages/1487044846/HowTo+Saprouter+Power+8+starten+stoppen)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Saprouter Port 3299 verwalten (interner Saprouter - EMEA)"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Problem:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn man versucht sich über die Liste in der [tumsaprouter.informatik.tu-muenchen.de/sapgui/UCC/UCC_landscape.xml](http://tumsaprouter.informatik.tu-muenchen.de/sapgui/UCC/UCC_landscape.xml) - Datei auf ein System zu verbinden, erscheint die Fehlermeldung im zweiten Bild:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-12-49.png?version=1&modificationDate=1598357569067&api=v2",
+              "path": "images/post_transport/saprouter-power8/01-image2020-8-25_14-12-49.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-14-26.png?version=1&modificationDate=1598357666397&api=v2",
+              "path": "images/post_transport/saprouter-power8/02-image2020-8-25_14-14-26.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Verbinde dich auf den Saprouter [uccsaprouter.in.tum.de](http://uccsaprouter.in.tum.de/) und bearbeitet die beiden Dateien /etc/hosts und /etc/services, sodass dein System wie die anderen Systeme in den Dateien eingetragen ist."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-16-49.png?version=1&modificationDate=1598357809427&api=v2",
+              "path": "images/post_transport/saprouter-power8/03-image2020-8-25_14-16-49.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Was eintragen?"
+            },
+            {
+              "kind": "markdown",
+              "text": "Services: einfach an den anderen Systemen orientieren (hier z.B. \"sapms<SID>        36<id>/tcp\"  )"
+            },
+            {
+              "kind": "markdown",
+              "text": "Hosts: bei allem außer IP an den anderen Systemen orientieren."
+            },
+            {
+              "kind": "markdown",
+              "text": "→ Die IP-Adresse: entweder per putty auf das System verbinden und mit *hostname -i* die IP-Adresse ausgeben lassen oder mit Hilfe der [Strukturdatenbank](https://collab.dvb.bayern/pages/viewpage.action?pageId=75660561) auslesen:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-23-14.png?version=1&modificationDate=1598358194000&api=v2",
+              "path": "images/post_transport/saprouter-power8/04-image2020-8-25_14-23-14.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die Informationen für die Datei /etc/services kannst du mithilfe der Transaktion LMDB auf der I04 bestimmen. Wähle dich dazu auf die I04 ein, rufe die Transaktion LMDB auf und manövriere in dem sich öffnenden Browser-Fenster zum Reiter \"Technische Systeme\". Gib hier dein System ein und lasse es dir anzeigen. Wähle die Unterrubrik \"Technische Instanzen\" und dann bis zum Reiter \"Message Server\": [https://i04.sapucc.in.tum.de/sap/bc/webdynpro/sap/lmdb_wda_expl_oif?WDCONFIGURATIONID=LMDB_WDA_EXPL_OIF_CFG&sap-language=DE](https://i04.sapucc.in.tum.de/sap/bc/webdynpro/sap/lmdb_wda_expl_oif?WDCONFIGURATIONID=LMDB_WDA_EXPL_OIF_CFG&sap-language=DE)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-20-13.png?version=1&modificationDate=1598358013927&api=v2",
+              "path": "images/post_transport/saprouter-power8/05-image2020-8-25_14-20-13.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-20-49.png?version=1&modificationDate=1598358049853&api=v2",
+              "path": "images/post_transport/saprouter-power8/06-image2020-8-25_14-20-49.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Nun musst du noch den saprouter neustarten. Wechsle dafür in das Verzeichnis /saprouter/bin/internal und führe dort das Skript *restart_internal_saprouter.sh*aus."
+            },
+            {
+              "kind": "markdown",
+              "text": "**ACHTUNG:**Wenn du den internen Sap-Router neustartest, schließt das alle offenen SAP-Gui-Sitzungen, die über den Saprouter-Port 3299 gerade laufen (alle EMEA Kunden). Starte den Sap-Router also am besten früh morgens oder spät abends neu. Informiere aber zumindest den Support-Mitarbeiter, damit dieser Bescheid weiß, falls sich Kunden beschweren, dass sich ihre SAP-Gui Sitzungen plötzlich geschlossen haben. Der saprouter-Neustart dauert nur wenige Sekunden und danach können wieder alle Systeme normal erreicht werden. Der Support-Mitarbeiter kann den Kunden also einfach sagen, dass sie es noch einmal versuchen sollen."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Saprouter Port 3298 verwalten (APJ-Saprouter)"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Problem:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Ein Kunde, der den Saprouter /H/saprouter.hcc.in.tum.de/S/3298 verwendet (alle APJ Kunden, zum Beispiel das ACC Melbourne) können sich nicht auf ein System verbinden und melden folgende Fehlermeldung:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-28-19.png?version=1&modificationDate=1598358499890&api=v2",
+              "path": "images/post_transport/saprouter-power8/07-image2020-8-25_14-28-19.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Verbinde dich auf den Saprouter [uccsaprouter.in.tum.de](http://uccsaprouter.in.tum.de/) und bearbeitet die Datei /saprouter/bin/apj/saprouttab, sodass dein System dem Standard der anderen Systeme folgt:"
+            },
+            {
+              "kind": "code",
+              "text": "# Systemname\nP * <IP-Adresse> *"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-46-53.png?version=1&modificationDate=1598359613887&api=v2",
+              "path": "images/post_transport/saprouter-power8/08-image2020-8-25_14-46-53.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die IP-Adresse kannst du mit Hilfe der [Strukturdatenbank](https://collab.dvb.bayern/pages/viewpage.action?pageId=75660561) auslesen:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend musst du noch das Skript *restart_apj_saprouter.sh* ausführen, um den saprouter neuzustarten:"
+            },
+            {
+              "kind": "code",
+              "text": "./restart_apj_saprouter.sh"
+            }
+          ],
+          "title": "HowTo: Saprouter Power 8 konfigurieren",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67919063/HowTo+Saprouter+Power+8+konfigurieren"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Auf den Saprouter verbinden"
+            },
+            {
+              "kind": "markdown",
+              "text": "Den Saprouter erreichst du (zum Beispiel via Putty oder WinSCP) unter der"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Adresse:** saprouter.ucc.cit.tum.de"
+            },
+            {
+              "kind": "markdown",
+              "text": "**User:** root"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Passwort:** <Standardpasswort> (siehe Keepass)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Neues System dem Power10 Saprouter hinzufügen"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Problem:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Ein Kunde, der den Saprouter /H/saprouter.ucc.cit.tum.de/S/3299 verwendet (wir bieten das ab 27.01.2025 an) können sich nicht auf ein System verbinden und melden folgende Fehlermeldung:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-28-19.png?version=1&modificationDate=1598358499890&api=v2",
+              "path": "images/post_transport/saprouter-power10/01-image2020-8-25_14-28-19.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Oder**... du hast du gerade ein neues System installiert, welches Zugang über SAP Logon braucht"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Verbinde dich via WinSCP auf den Saprouter saprouter.ucc.cit.tum.de und bearbeitet die Datei /saprouter/saprouttab, sodass dein System dem Standard der anderen Systeme folgt:"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Shared-System:**"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nP * <IP-Adresse> 3200 #<SID> - Direktlink Benutzerspezifischer Anwendungsserver\nP * <IP-Adresse> 36<Letzte zwei Ziffern der SID> #<SID> - sapms-Dienst für SPACE Group\n(für Beispiele siehe Bild)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1306500777/image-2025-3-6_13-44-8.png?version=1&modificationDate=1741265048270&api=v2",
+              "path": "images/post_transport/saprouter-power10/02-image-2025-3-6_13-44-8.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Exklusiv-System:**"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nP * <IP-Adresse> 3000.3999 #<SID> - Größere Portrange für ABAP Entwicklung\n(für Beispiele siehe Bild)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1306500777/image-2025-3-6_13-43-50.png?version=1&modificationDate=1741265030350&api=v2",
+              "path": "images/post_transport/saprouter-power10/03-image-2025-3-6_13-43-50.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die IP-Adresse kannst du mit Hilfe der [Strukturdatenbank](https://collab.dvb.bayern/pages/viewpage.action?pageId=75660561) auslesen:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919063/image2020-8-25_14-23-14.png?version=1&modificationDate=1598358194000&api=v2",
+              "path": "images/post_transport/saprouter-power10/04-image2020-8-25_14-23-14.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Als nächstes, bearbeite das /etc/hosts file und füge folgenden Eintrag hinzu:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n<ID-Adresse> <SID>Z <SID>z <sid>Z <sid>z <hostname> <FQDN>\n(für Beispiele siehe Bild)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1306500777/image-2025-1-27_15-55-59.png?version=1&modificationDate=1737989759957&api=v2",
+              "path": "images/post_transport/saprouter-power10/05-image-2025-1-27_15-55-59.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Nun, bearbeite das /etc/services file und füge folgenden Eintrag hinzu:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsapms<SID>\t36<Letzte zwei Ziffern der SID>/tcp\n(für Beispiele siehe Bild)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/1306500777/image-2025-1-27_16-36-12.png?version=1&modificationDate=1737992172267&api=v2",
+              "path": "images/post_transport/saprouter-power10/06-image-2025-1-27_16-36-12.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend musst du noch das Skript *refresh_saprouttab.sh* ausführen, um den saprouter zu aktualisieren:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncd /saprouter\n./refresh_saprouttab.sh"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Sonderfall: Migration einer SID"
+            },
+            {
+              "kind": "markdown",
+              "text": "Der Saprouter speichert das IP Mapping aus /etc/hosts in einem internen Buffer. Wenn man ein IP Mapping ändert (z.B. wegen einer Migration einer SID), muss man den Buffer neu laden. Dafür gibt es die folgende Skript:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncd /saprouter\n./flush_buffer.sh"
+            }
+          ],
+          "title": "HowTo: Saprouter Power 10 konfigurieren",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/1306500777/HowTo+Saprouter+Power+10+konfigurieren"
+        }
+      ]
+    },
+    {
+      "title": "Einbinden ins Monitoring",
+      "intro": "Installiere und akzeptiere den Diagnostics Agent, führe die Managed System Configuration durch und binde das System in Solution Manager, Prometheus und UptimeRobot ein.",
+      "notices": [
+        "Die MSC kann in Schritt 2 wegen des niedrigen SP-Levels der I04 einen Fehler zu einer nicht verfügbaren Komponente melden. Dieser bekannte Fehler kann laut Wiki ignoriert werden; die E04 zeigt dasselbe Verhalten."
+      ],
+      "pages": [
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "1. Meldet euch an der gewünschten LPAR per SSH an. Wählt dabei root als Benutzer und das dazugehörige Kennwort der LPAR. Danach ist es ratsam eine bash mithilfe des aufgeführten Kommandos zu öffnen."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda00.png?version=1&modificationDate=1556097872520&api=v2",
+              "path": "images/post_transport/diagnostics-manual/01-sapda00.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "2. Da im weiteren Vorgehen eine Remoteverbindung mithilfe des VNCservers aufgebaut werden muss, solltet ihr prüfen, ob bereits ein VNCserver auf der jeweiligen LPAR läuft. Das Kommando **ps -Af**liefert euch eine Liste aller Prozesse. Da diese Liste jedoch recht lang sein kann, greppen wir nach dem Stichwort **vnc**. Sollte das Ergebnis dem unteren Screenshot ähneln, ist ein vncserver läuft auf der verbundenen LPAR bereits ein vncserver. Wenn das nicht der Fall sein sollte könnt ihr ihn mithile des **vncserver** Kommandos starten."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda01.png?version=1&modificationDate=1556097872507&api=v2",
+              "path": "images/post_transport/diagnostics-manual/02-sapda01.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "3. Im nächsten Schritt ist es notwendig zwei Verzeichnisse anzulegen und diese mit gewissen Rechten zu versehen."
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncd /sap/<SID>\nmkdir DAA\nmkdir daaadm\nchmod -R 777 ../DAA"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda02.png?version=1&modificationDate=1556097872473&api=v2",
+              "path": "images/post_transport/diagnostics-manual/03-sapda02.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "4. Auf die eben gerade erstellen Verzeichnisse werden nun Links erstellt."
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncd /home\nln -s /sap/<SID>/daaadm daaadm\ncd /usr/sap\nln -s /sap/<SID>/DAA DAA"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda03.png?version=1&modificationDate=1556097872457&api=v2",
+              "path": "images/post_transport/diagnostics-manual/04-sapda03.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "5. Sind diese Schritte erfolgreich durchgeführt worden, verbinden wir uns im Anschluss auf der entsprechenden LPAR mithilfe eines VNC Viewers."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda04.png?version=1&modificationDate=1556097872443&api=v2",
+              "path": "images/post_transport/diagnostics-manual/05-sapda04.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "6. Ihr erhaltet zu Beginn einen Warnung, die euch darauf hinweisen soll, dass es sich hierbei um eine unverschlüsselte Verbindung handelt. Diese könnt ihr getrost hinnehmen und die Verbindung aufbauen. Wollt ihr in Zukunft keine weiteren Warnhinweise für diese LPAR erhalten, ist es ratsam die untere Option auszuwählen."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda05.png?version=1&modificationDate=1556097872410&api=v2",
+              "path": "images/post_transport/diagnostics-manual/06-sapda05.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "7. Nachdem ihr den Desktop der AIX angezeigt bekommt, öffnet ihr ein neues Terminal."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda06.png?version=1&modificationDate=1556097872380&api=v2",
+              "path": "images/post_transport/diagnostics-manual/07-sapda06.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "8. Auch hier ist es ratsam zunächst eine bash zu öffnen und anschließend in das gewünschte Verzeichnis zu wechseln."
+            },
+            {
+              "kind": "note",
+              "text": "Es ist dringend erforderlich in das Verzeichnis /global/sapcd/sap_installation/SoftwareProvisioningManager<neusteVersion>/ zu wechseln bevor ihr den Installer startet."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda07.PNG?version=1&modificationDate=1556097872363&api=v2",
+              "path": "images/post_transport/diagnostics-manual/08-sapda07.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "9. Leider wird die grafische Oberfläche des Installers standardmäßig minimiert dargestellt, weshalb ihr ihn mithilfe eines Doppelklicks öffnen könnt."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda08.PNG?version=1&modificationDate=1556097872333&api=v2",
+              "path": "images/post_transport/diagnostics-manual/10-sapda08.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "10. Um den SAP Disgnostics Agent zu installieren müsst ihr den folgenden Pfad folgen: **Generic Installation Options -> Diagnostics in SAP Solution Manager -> Install - Diagnostics Agent with 741 Kernel**"
+            },
+            {
+              "kind": "markdown",
+              "text": "**ACHTUNG:**Nur der SWPM 1.0 enthält die Installationsdateien für den Diagnostic Agent. Der SWPM 2.0 ist zur Installation des Diagnostic Agents nicht geeignet!"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda09.PNG?version=1&modificationDate=1556097872317&api=v2",
+              "path": "images/post_transport/diagnostics-manual/09-sapda09.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "11. Gebt wie angegeben den Hostnamen ein. Dieser wird standardmäßig richtig vom System erkannt, sodass ihr ihn fast immer einfach nur übernehmen könnt."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda10.png?version=1&modificationDate=1556097872287&api=v2",
+              "path": "images/post_transport/diagnostics-manual/11-sapda10.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "12. Anschließend müsst ihr dem Installer den Pfad des SAP Kernels mit der Version 7.41 angeben. Dieser lautet: **/global/sapcd/sap_installation/NW740_SR1/SAP_Kernel_7.41_AIX_64_bit**"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda11.PNG?version=1&modificationDate=1556097872270&api=v2",
+              "path": "images/post_transport/diagnostics-manual/12-sapda11.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "13. Die System ID des Diagnostics Agent könnt ihr beibehalten. Dieser lautet **DAA**."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda12.png?version=1&modificationDate=1556097872240&api=v2",
+              "path": "images/post_transport/diagnostics-manual/13-sapda12.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "14. Im nächsten Schritt müsst ihr das Passwort des daaadm festlegen. Es lautet: **<retrieve from approved secret store>**. Die User ID bleibt frei, wohingegen die Gruppen ID einfach, wie vorgeschlagen, übernommen wird."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda13.PNG?version=1&modificationDate=1556097872223&api=v2",
+              "path": "images/post_transport/diagnostics-manual/14-sapda13.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "15. Ihr erhaltet eine Mitteilung über das Hinzufügen des daaadm Benutzers in eine trusted list. Dies könnt ihr mit **YES** bestätigen und fortfahren."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda14.PNG?version=1&modificationDate=1556097872193&api=v2",
+              "path": "images/post_transport/diagnostics-manual/15-sapda14.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "16. Die nächste Maske zeigt euch einen Überblick der zu installierenden Instanzen. Solltet ihr ein Dual-Stack System mit einem ABAP und einem JAVA Stack besitzen, werden euch dementsprechend zwei SAP Systeme angezeigt. Vergewissert euch, dass die **Instanznummer**, die unten angegeben wird, **98** ist."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda15.PNG?version=1&modificationDate=1556097872177&api=v2",
+              "path": "images/post_transport/diagnostics-manual/16-sapda15.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "17. Im Weiteren registrieren wir uns an eine zentrale SLD **ohne HTTPS**."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda16.PNG?version=1&modificationDate=1556097872160&api=v2",
+              "path": "images/post_transport/diagnostics-manual/17-sapda16.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "18. Es folgen der HTTP Host und Port und der Data Supplier Nutzer mit entsprechendem Passwort. Das Passwort zum Benutzer **SLD_DS_SLD** lautet **<retrieve from approved secret store>**."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda17.PNG?version=1&modificationDate=1556097872130&api=v2",
+              "path": "images/post_transport/diagnostics-manual/18-sapda17.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "19. Wir wählen eine Standard Verbindung aus, die zum Solution Manager aufgebaut werden soll."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda18.PNG?version=1&modificationDate=1556097872113&api=v2",
+              "path": "images/post_transport/diagnostics-manual/19-sapda18.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "20. Der Verbindungstyp dafür ist **P4 Connection via SCS message server**."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda19.PNG?version=1&modificationDate=1556097872097&api=v2",
+              "path": "images/post_transport/diagnostics-manual/20-sapda19.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "21. Die erforderlichen Parameter können aus dem unten aufgeführtem Screenshot für die Verbindung zum SAP Solution Manager entnommen werden. Das Passwort des **SMD_AGT** Nutzers lautet****<siehe Passwortmanager>."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda20.PNG?version=1&modificationDate=1556097872067&api=v2",
+              "path": "images/post_transport/diagnostics-manual/21-sapda20.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "22. Die Archive können in den vorausgewählten Pfaden extrahiert werden, sodass keine weitere Anpassung notwendig ist."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda21.PNG?version=1&modificationDate=1556097872050&api=v2",
+              "path": "images/post_transport/diagnostics-manual/22-sapda21.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "23. Es folgt eine Übersicht aller angegeben Parameter, die wir mit **NEXT** quittieren können."
+            },
+            {
+              "kind": "markdown",
+              "text": "24. Es folgt nun die eigentliche Installationsprozedur des SAP Diagnostics Agent welcher ein wenig Zeit in Anspruch nehmen kann."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67919478/sapda22.PNG?version=1&modificationDate=1556097872037&api=v2",
+              "path": "images/post_transport/diagnostics-manual/23-sapda22.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "25. Wurde die Installation erfolgreich abgeschlossen erfolgt eine Mitteilung an den Benutzer."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda23.PNG?version=1&modificationDate=1556097872020&api=v2",
+              "path": "images/post_transport/diagnostics-manual/24-sapda23.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "26. Mit dem Bestätigen des Hinweises wird die GUI des Installers beendet. Der gestartete Prozess wird jedoch nicht automatisch beendet, sodass man ihn manuell mit **STRG+C** beenden muss."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda24.PNG?version=1&modificationDate=1556097872007&api=v2",
+              "path": "images/post_transport/diagnostics-manual/25-sapda24.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "27. Da wir den Installationsprozess manuell beendet haben, ist es ratsam die temporären Installationsdateien auch manuell zu löschen. Diese finden sich im Verzeichnis **/tmp**."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919478/sapda25.png?version=1&modificationDate=1556097871973&api=v2",
+              "path": "images/post_transport/diagnostics-manual/26-sapda25.png"
+            }
+          ],
+          "title": "SAP Diagnostics Agent - Manuelle Installation (VNC)",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67919478/SAP+Diagnostics+Agent+-+Manuelle+Installation+VNC"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "[Download](https://collab.dvb.bayern/download/attachments/67918518/unattended_inst.sh?version=1&modificationDate=1579176888517&api=v2)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Dieses Skript dient zur automatischen unüberwachten Installation des Diagnostic Agents mittels des Software Provisioning Managers. Das Skript ist zusätzlich auf dem NFS /data/export/shared in dem Ordner DAA/unattended_Installation zu finden."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Quickstart"
+            },
+            {
+              "kind": "markdown",
+              "text": "**SUSE Linux:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "cd /global/shared/SAP/DAA/unattended_Installation/"
+            },
+            {
+              "kind": "markdown",
+              "text": "./unattended_inst.sh -logicalhostname \"<hostname>\" -kerneldirectory \"/global/shared/SAP/Kernel/Kernel_DAA_PART1AND2\" -installerdirectory \"/global/shared/SAP/SWPM/SUSE/SWPMforDAAInstallation/Installer/\""
+            },
+            {
+              "kind": "markdown",
+              "text": "**WICHTIG**: Die Meldung \"Die Installation konnte nicht erfolgreich durchgeführt werden\" ist meistens falsch!"
+            },
+            {
+              "kind": "markdown",
+              "text": "einfach prüfen mit:  cat /tmp/sapinst_instdir/GENERIC/AS/WI_UC/installationSuccesfullyFinished.dat"
+            },
+            {
+              "kind": "markdown",
+              "text": "**=> Wenn Datei existiert war die Installation erfolgreich!!!**"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Hinweis für AIX:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "Das Skript scheint auch für AIX zu funktionieren. Voraussetzung ist hierbei dass die Kernel Files und SWPM entsprechend angepasst sind. Man erhält wärend der Ausführung außerdem ein paar Fehlermeldungen welche jedoch ignoriert werden können."
+            },
+            {
+              "kind": "markdown",
+              "text": "Laut sapcontrol scheint der Service zu arbeiten:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918518/image2021-12-27_12-27-32.png?version=1&modificationDate=1640604452320&api=v2",
+              "path": "images/post_transport/diagnostics-script/01-image2021-12-27_12-27-32.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Beispielaufruf für AIX:"
+            },
+            {
+              "kind": "markdown",
+              "text": "./unattended_inst.sh -logicalhostname \"<HOSTNAME>\" -kerneldirectory \"/global/shared/SAP/Kernel/Kernel_DAA_AIX/\" -installerdirectory \"/global/shared/SAP/SWPM/SoftwareProvisioningManager1.10_NW7.1_AIX_64_SP24_PL4/\""
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Details"
+            },
+            {
+              "kind": "markdown",
+              "text": "Das Skript hat insgesamt sechs verschiedene Übergabeparameter. Diese lauten:"
+            },
+            {
+              "kind": "markdown",
+              "text": "-h bzw -help: Dieser kann genutzt werden um sich ein Hilfefenster ausgeben zu lassen. Wenn man das Skript ohne Übergabeparameter ausführt, wird das selbe Hilfefenster geprintet."
+            },
+            {
+              "kind": "markdown",
+              "text": "-SID: Bei diesem Übergabeparameter kann man die Diagnostics Agent System ID anpassen. Falls keine DASID übergeben wird, wird der default-Wert für die DASID genommen, welcher \"DAA\" ist. Diesen Wert nehmen wir im Normalfall auch für unsere Installation."
+            },
+            {
+              "kind": "markdown",
+              "text": "-in bzw -instancenumber: Dieser Übergabeparameter beeinflusst, wie der Name schon sagt, die Instanznummer des Dignostic Agent. Der default-Wert hierfür ist die 98. Auch diesen Wert übernehmen wir im Normalfall für unsere Installation. Gültige Werte für die Instanznummer sind [0,98]"
+            },
+            {
+              "kind": "markdown",
+              "text": "-logicalhostname: Über diesen Übergabeparameter können wir den logicalhostname bestimmen. Dieser Übergabeparameter muss, im Gegensatz zu den 3 Vorgängern, für eine erfolgreiche Installation immer gesetzt werden. Falls dies nicht gemacht wird, wird das Skript die Fehlermeldung \"Es wurde kein logicalhostname eingegeben. Dieser ist unbedingt notwendig\" ausgeben und die Installation abbrechen. Wichtig: Der logicalhostname ist nicht der full qualified domain name, sondern nur z.B s85lp1 für die Installation des Diagnostic Agents auf der S85."
+            },
+            {
+              "kind": "markdown",
+              "text": "-kerneldirectory: Mit diesem Parameter kann der Pfad zu dem Kernel, der für die Installation genutzt werden soll, angegeben werden. Hierfür gibt es den Default Pfad \"/global/shared/Kernel/Kernel_DAA_PART1AND2\". Falls dieser Kernel nicht der gewünschte Kernel ist kann dieser mit Hilfe dieses Parameters abgeändert werden."
+            },
+            {
+              "kind": "markdown",
+              "text": "-installerdirectory: Mit diesem Parameter kann der Pfad zu dem Software Provisioning Manager angegeben werden. Auf dem shared NFS liegt im Ordner SWPM/SWPMforDAAInstallation der notwendige SWPM. Der Pfad, welcher angegeben wird, muss eine Label.ASC File enthalten. Als Default Ordner ist \"/global/shared/SWPM/SWPMforDAAInstallation/Installer\" hinterlegt. Falls ein andere Software Provisioning Manager genutzt werden soll kann der Pfad zur LABEL.ASC file mit Hilfe dieses Parameters angegeben werden."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Benutzung des Skriptes"
+            },
+            {
+              "kind": "markdown",
+              "text": "Das Installation Directory ist in dem Skript festgelegt. Standardmäßig ist dieses aktuell auf \"/data/installationfolderDiagnosticsAgent\" gesetzt. Man kann dieses einfach ändern, wenn man im Skript in der dritten Zeile einen allternativen Pfad angibt."
+            },
+            {
+              "kind": "markdown",
+              "text": "Ansonsten muss man für die Installation einfach das Skript mit den notwendigen Parametern aufrufen. Dringend notwendig sind dafür, wie bereits oben beschrieben logicalhostname, kerneldirectory, installerdirectory. SID und instancenumber sind nur dann anzugeben, wenn sie von dem default-wert variieren."
+            },
+            {
+              "kind": "markdown",
+              "text": "Beispiel Aufruf des Skriptes: → ./unattended_inst.sh -logicalhostname \"s85lp1\" -kerneldirectory \"/global/shared/Kernel/Kernel_DAA_PART1AND2\" -installerdirectory \"/global/shared/SWPM/SWPMforDAAInstallation/Installer\""
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn die Installation erfolgreich war, sollte das Skript eine Ausgabe mit genau dieser Information ausgeben. Es ist möglich, dass dieser Schritt nicht funktioniert. Schauen Sie, falls das Skript nicht sagt, dass die Installation erfolgreich war, in den Installationsordner und suchen eine \"installationSuccesfullyFinished.dat\" Datei. Falls diese Datei da ist, war die Installation erfolgreich auch wenn das Skript etwas anderes sagt."
+            }
+          ],
+          "title": "Skript: Unattended Installation Diagnostic Agent",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67918518/Skript+Unattended+Installation+Diagnostic+Agent"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "Falls folgender Fehler auftritt:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67917955/image2020-3-4_10-16-42.png?version=1&modificationDate=1588169762893&api=v2",
+              "path": "images/post_transport/diagnostics-agent-accept/01-image2020-3-4_10-16-42.png"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "a) Prüfe ob diagnostic agent läuft:"
+            },
+            {
+              "kind": "markdown",
+              "text": "su - daaadm"
+            },
+            {
+              "kind": "markdown",
+              "text": "sapcontrol -nr 98 -function GetProcessList"
+            },
+            {
+              "kind": "markdown",
+              "text": "*OK*\n*name, description, dispstatus, textstatus, starttime, elapsedtime, pid*\n*jstart, J2EE Server, **GREEN, All processes running**, 2020 03 04 10:13:55, 0:03:41, 149008*"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "b) Weiter zur Agentenverwaltung"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 1: In die Agentenverwaltung einloggen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Du erreichst die Agentenverwaltung unter [https://i04lp1.informatik.tu-muenchen.de:50401/webdynpro/dispatcher/sap.com/tc~smd~server~agent~admin/SMDAgentAdminApplication?sap-language=EN#](https://i04lp1.informatik.tu-muenchen.de:50401/webdynpro/dispatcher/sap.com/tc~smd~server~agent~admin/SMDAgentAdminApplication?sap-language=EN)"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 2: Den betroffenen Agenten wählen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Folge den Screenshots"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67917955/image2020-3-4_10-20-32.png?version=1&modificationDate=1588169763220&api=v2",
+              "path": "images/post_transport/diagnostics-agent-accept/02-image2020-3-4_10-20-32.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Warten bis \"Ausstehende Aufgabe\" geleert sind"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67917955/image2020-3-4_10-21-40.png?version=1&modificationDate=1588169763173&api=v2",
+              "path": "images/post_transport/diagnostics-agent-accept/03-image2020-3-4_10-21-40.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Agent sollte anschließend als \"verbunden\" markiert sein => Zuordnung sollte damit klappen"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67917955/image2020-3-4_10-22-39.png?version=1&modificationDate=1588169763203&api=v2",
+              "path": "images/post_transport/diagnostics-agent-accept/04-image2020-3-4_10-22-39.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 3: Schreibrechte im Diagnostics-Ordner überprüfen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn nach Schritt 2 weiterhin eine Fehlermeldung angezeigt wird, dann überprüfe, ob die Schreibrechte im Diagnostics-Agent Ordner passen [https://launchpad.support.sap.com/#/notes/0002322387](https://launchpad.support.sap.com/#/notes/0002322387)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Folge außerdem folgendem Artikel: [Konfiguration verwalteter Systeme - Introscope Host Adapter](https://collab.dvb.bayern/spaces/TUMucc/pages/67917931/Konfiguration+verwalteter+Systeme+-+Introscope+Host+Adapter)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Bei Schritt 3 kann dir dieser chmod Kalkulator helfen: [https://chmod-calculator.com/](https://chmod-calculator.com/)"
+            }
+          ],
+          "title": "Diagnostics-Agent kann nicht erreicht werden",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67917955/Diagnostics-Agent+kann+nicht+erreicht+werden#DiagnosticsAgentkannnichterreichtwerden-Schritt1:IndieAgentenverwaltungeinloggen"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Mitmachvideo"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "2023-11-21 HowTo - Managed System Configuration.mp4"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Schritt-für-Schritt Anleitung"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 1: Solution Manager-Tool solman_setup aufrufen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Auf Solution Manager verbinden: [https://i04.sapucc.in.tum.de/sap/bc/webdynpro/sap/wd_sise_main_app#](https://i04.sapucc.in.tum.de/sap/bc/webdynpro/sap/wd_sise_main_app) und mit Benutzer master-adm einloggen"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 2: In der Konfiguration der verwalteten Systeme nach Zielsystem filtern"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-1-16_14-38-10.png?version=1&modificationDate=1579182864360&api=v2",
+              "path": "images/post_transport/managed-system-config/01-image2020-1-16_14-38-10.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-1-16_14-39-27.png?version=1&modificationDate=1579182864330&api=v2",
+              "path": "images/post_transport/managed-system-config/02-image2020-1-16_14-39-27.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 3: System auswählen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle nun das System, das du konfigurieren möchtest und wähle System konfigurieren → Minimale Konfiguration."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-1-16_14-40-30.png?version=1&modificationDate=1579182864300&api=v2",
+              "path": "images/post_transport/managed-system-config/03-image2020-1-16_14-40-30.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 4: In den Bearbeitungsmodus wechseln (Button \"Bearbeiten\") → Diagnostics Relevanz setzen (lassen)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke zunächst auf den Button \"Bearbeiten\" um den Bearbeitungsmodus zu aktivieren. Klicke anschließend auf den Button \"Aufrischen\". Hier sollten alle Lämpchen, wie unten gezeigt, grün leuchten."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-1-16_14-42-7.png?version=1&modificationDate=1579182864283&api=v2",
+              "path": "images/post_transport/managed-system-config/04-image2020-1-16_14-42-7.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 5: \"Voraussetzungen prüfen\""
+            },
+            {
+              "kind": "markdown",
+              "text": "Setze alle Aktivitäten auf \"Ausführen\". Wähle unter dem Reiter \"Automatische Aktivitäten\" den Butten  \"Alle ausführen\" und bestätige mit \"Alle\""
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_16-5-10.png?version=1&modificationDate=1588169070467&api=v2",
+              "path": "images/post_transport/managed-system-config/05-image2020-4-29_16-5-10.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_16-5-58.png?version=1&modificationDate=1588169118150&api=v2",
+              "path": "images/post_transport/managed-system-config/06-image2020-4-29_16-5-58.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Warte nun bis der Prozessbalken abgeschlossen ist."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_16-7-20.png?version=1&modificationDate=1588169200217&api=v2",
+              "path": "images/post_transport/managed-system-config/07-image2020-4-29_16-7-20.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Idealerweise sollten alle Lämpchen grün anzeigen."
+            },
+            {
+              "kind": "markdown",
+              "text": "Manuelle Aktivität \"SAP-HANA-Datenbankbenutzer anlegen wurde bereits bei der Installation durchgeführt und kann auf ausgeführt gesetzt werden."
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Falls folgende Fehler auftreten:"
+            },
+            {
+              "kind": "heading",
+              "level": 5,
+              "text": "1. Kaputter Diagnostics Agent"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-3-4_10-16-42.png?version=1&modificationDate=1583313402807&api=v2",
+              "path": "images/post_transport/managed-system-config/08-image2020-3-4_10-16-42.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Lösungsvorschlag: [Diagnostics-Agent kann nicht erreicht werden](https://collab.dvb.bayern/spaces/TUMucc/pages/67917955/Diagnostics-Agent+kann+nicht+erreicht+werden)"
+            },
+            {
+              "kind": "heading",
+              "level": 5,
+              "text": "2. Fehlende ABAP SAP Central Services (ASCS) Instanz"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-7-31_12-18-31.png?version=1&modificationDate=1596190711430&api=v2",
+              "path": "images/post_transport/managed-system-config/09-image2020-7-31_12-18-31.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Lösung:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "[Fehlende ABAP SAP Central Services (ASCS) Instanz](https://collab.dvb.bayern/spaces/TUMucc/pages/67918149/Fehlende+ABAP+SAP+Central+Services+ASCS+Instanz)"
+            },
+            {
+              "kind": "heading",
+              "level": 5,
+              "text": "3. Keine korrekte ABAP Definition"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-8-20_14-49-34.png?version=1&modificationDate=1597927774770&api=v2",
+              "path": "images/post_transport/managed-system-config/11-image2020-8-20_14-49-34.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Lösung:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "[Fehlende ABAP Instanz](https://collab.dvb.bayern/spaces/TUMucc/pages/67918387/Fehlende+ABAP+Instanz)"
+            },
+            {
+              "kind": "heading",
+              "level": 5,
+              "text": "4. Central Service Instance weist keinen Message-Server-Port auf"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-8-20_15-15-22.png?version=1&modificationDate=1597929322540&api=v2",
+              "path": "images/post_transport/managed-system-config/10-image2020-8-20_15-15-22.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Lösung:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "[Central Service Instance weist keinen Message-Server-Port auf](https://collab.dvb.bayern/spaces/TUMucc/pages/67918001/Central+Service+Instance+weist+keinen+Message-Server-Port+auf)"
+            },
+            {
+              "kind": "heading",
+              "level": 5,
+              "text": "5. Softwarekomponente wird von Prüfung nicht behandelt"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/MSC%2001.png?version=1&modificationDate=1683820769350&api=v2",
+              "path": "images/post_transport/managed-system-config/14-MSC_2001.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Lösung:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "[Softwarekomponente wird von dieser Prüfung noch nicht behandelt](https://collab.dvb.bayern/spaces/TUMucc/pages/67918077/Softwarekomponente+wird+von+dieser+Pr%C3%BCfung+noch+nicht+behandelt)"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 6: Systemparameter eingeben"
+            },
+            {
+              "kind": "markdown",
+              "text": "Hier sind drei Bereiche zu pflegen Introscope Connection (rot), DB Parameter (grün) und ABAP Parameter (blau)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_17-45-22.png?version=1&modificationDate=1588175082197&api=v2",
+              "path": "images/post_transport/managed-system-config/12-image2020-4-29_17-45-22.png"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Gemeinsame Parameter (rot)"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Gemeinsame Parameter:**"
+            },
+            {
+              "kind": "markdown",
+              "text": "Introscope EM:                                         [i04lp1.informatik.tu-muenchen.de](http://i04lp1.informatik.tu-muenchen.de/):6001 (Standalone)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Lastenausgleichsmodul-Host:                 <HOST-FQDN> z.B. [s06lp1.ucc.in.tum.de](http://s06lp1.ucc.in.tum.de/) (entsprechenden Host angeben)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Lastenausgleichsmodul-Port:                   80<Inst.Nr> → z.B. 8000"
+            },
+            {
+              "kind": "markdown",
+              "text": "HTTPs                                                      Nein"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Falls CTS Reporting angezeigt wird → leer lassen**"
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicken Sie auf URL überprüfen"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/red.PNG?version=1&modificationDate=1663162715840&api=v2",
+              "path": "images/post_transport/managed-system-config/13-red.PNG"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "DB-Parameter (grün) → Hier muss zwischen HANA und DB2 unterschieden werden"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Nur bei DB2"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Setup des DBACockpits/DB-Extraktors:** Haken setzen"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Datenbankhost:** <sid>lp1"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Portnummer:** 5912"
+            },
+            {
+              "kind": "markdown",
+              "text": "**SSL-Serverzertifikat:** <leer>"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Datenbankbenutzer:** db2<sid>"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Kennwort (tenant password):** <Standardpasswort>"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Eigner des Datenkollektors:** Einzeln - primär"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Vorlage für Datenkollektoreinrichtung:** SAP-Standard"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Automatische Aktualisierung:** Haken setzen"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Bei SAP HANA"
+            },
+            {
+              "kind": "markdown",
+              "text": "Benutzer: SYSTEM"
+            },
+            {
+              "kind": "markdown",
+              "text": "Kennwort: <UCC-Standardpasswort, siehe Keepass>"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/green.PNG?version=1&modificationDate=1663162718620&api=v2",
+              "path": "images/post_transport/managed-system-config/15-green.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "(Bei Verbindungsproblemen prüfen ob der DB-Connect Port (im Bild 30068) mit dem Indexserver Port auf der HANA übereinstimmt"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-1-16_15-20-56.png?version=1&modificationDate=1579184457130&api=v2",
+              "path": "images/post_transport/managed-system-config/16-image2020-1-16_15-20-56.png"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "ABAP-Parameter (blau)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Click on \"Jump to Maintain RFCs step\""
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/RFC1.png?version=1&modificationDate=1663160923977&api=v2",
+              "path": "images/post_transport/managed-system-config/17-RFC1.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Enter client 000, set the standart password for master-adm and connect"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/1.PNG?version=1&modificationDate=1667826211437&api=v2",
+              "path": "images/post_transport/managed-system-config/18-1.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "Note down the user i.e. SM_ADMIN_S08 in this case and set the standard password for this user"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/2.PNG?version=1&modificationDate=1667826272827&api=v2",
+              "path": "images/post_transport/managed-system-config/19-2.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "Enter the noted Username with the standard password and test login"
+            },
+            {
+              "kind": "markdown",
+              "text": "Execute"
+            },
+            {
+              "kind": "markdown",
+              "text": "check on all the 6 boxes and then click on the 'execute' on the top followed by Test Logon."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/jump.PNG?version=1&modificationDate=1663162950813&api=v2",
+              "path": "images/post_transport/managed-system-config/21-jump.PNG"
+            },
+            {
+              "kind": "markdown",
+              "text": "Click on 'Create Read &Back RFC'. If everything goes right, you should see the pop-up shown below"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/confirm.PNG?version=1&modificationDate=1663163179707&api=v2",
+              "path": "images/post_transport/managed-system-config/20-confirm.PNG"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 7: RFCs ## already mentioned in step-6"
+            },
+            {
+              "kind": "markdown",
+              "text": "Es öffnet sich ein neues Fenster. Setze hier 6 Haken bei den RFC Destinations und drücke auf ausführen, wie im Screenshot dargestellt."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_17-58-51.png?version=1&modificationDate=1588175891627&api=v2",
+              "path": "images/post_transport/managed-system-config/22-image2020-4-29_17-58-51.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Bestätige im aufklappenden Fenster mit \"ja\" und melde dich mit dem master-adm für dieses System an und drücke \"OK\"."
+            },
+            {
+              "kind": "markdown",
+              "text": "Teste anschließend ob die Anmeldung für den SAP-Solution-Manager-Administrator gelingt. Wenn nicht, musst du die Anmeldedaten für das Profil SOLMAN_ADMIN manuell eingeben."
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend klicke im Reiter \"Benutzer für Setup des verwalteten Systems\" auf den Button \"Administrator anlegen oder aktualisieren\". Ein neues Pop-Up-Fenster öffnet sich. Hier musst du einen Administrator SM_ADMIN_<SID> anlegen, oder diesen aktualisieren, sofern er schon existiert. Logge dich dafür zunächst mit dem master-adm ein und verwende dann die Schaltfläche um den SM_ADMIN_<SID> anzulegen oder zu aktualisieren."
+            },
+            {
+              "kind": "markdown",
+              "text": "Nun sollte der Bildschirm in etwa wie folgt aussehen:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_18-6-59.png?version=1&modificationDate=1588176379023&api=v2",
+              "path": "images/post_transport/managed-system-config/23-image2020-4-29_18-6-59.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Drücke auf \"Sichern\" und schließe dann das Fenster."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 8: Systemparameter eingeben abschließen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Es wird nun ein Pop-Up erscheinen, das du mit OK bestätigst. Teste, ob du bei den ABAP-Parametern den Admin SM_ADMIN_<SID> anmelden kannst. Wenn ja, klicke auf \"Weiter\"."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 9: Benutzer pflegen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Hier musst du eventuell noch Benutzer einfügen oder aktualisieren. Wähle dazu zuerst den Benutzer, auf den du eine Aktion ausführen möchtest (im Screenshot SAPSUPPORT) und verwende dann das untere Dialogfeld und die Taste-Ausführen, um die benötgten Änderungen an dem Benutzer vorzunehmen. SAPSUPPORT Passwort: `<retrieve from approved secret store>`"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_18-13-43.png?version=1&modificationDate=1588176783420&api=v2",
+              "path": "images/post_transport/managed-system-config/24-image2020-4-29_18-13-43.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Sobald alle Benutzer grün markiert sind, klicke auf Weiter."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 10: Konfiguration abschließen"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_18-16-40.png?version=1&modificationDate=1588176960080&api=v2",
+              "path": "images/post_transport/managed-system-config/25-image2020-4-29_18-16-40.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle im Reiter \"Automatische Aktivitäten\" bei allen Einträgen den Ausführungsstatus \"Ausführen\" und drücke die Taste \"Alle Ausführen\". Bestätige mit \"Alle Aktivitäten\"."
+            },
+            {
+              "kind": "markdown",
+              "text": "Im Reiter Manuelle Aktivitäten wähle bei allen Einträgen \"Ausgeführt\". Gehe dann zu Schritt 11 über."
+            },
+            {
+              "kind": "markdown",
+              "text": "Falls Introscope Host Adapter nicht verbindet"
+            },
+            {
+              "kind": "heading",
+              "level": 5,
+              "text": "2. Introscope-Host-Adapter kann nicht verbinden"
+            },
+            {
+              "kind": "markdown",
+              "text": "****"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-3-4_10-50-42.png?version=1&modificationDate=1583315442153&api=v2",
+              "path": "images/post_transport/managed-system-config/26-image2020-3-4_10-50-42.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Lösungsvorschlag: [Introscope-Host-Adapter nicht erreichbar](https://collab.dvb.bayern/spaces/TUMucc/pages/67918118/Introscope-Host-Adapter+nicht+erreichbar)"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 11: SAP-Router-Konfiguration überprüfen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Gehe nun auf die Seite [https://me.sap.com/systemsprovisioning](https://me.sap.com/systemsprovisioning), melde dich mit deiner SAP Universal ID an und wähle den Reiter *Systeme*:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image-2023-7-13_15-55-53.png?version=1&modificationDate=1689256553517&api=v2",
+              "path": "images/post_transport/managed-system-config/27-image-2023-7-13_15-55-53.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Scrolle bis *On-Premise-Systeme.*Nutze hier das Suchfeld, um dein System zu finden. Wähle nun das S/4HANA System und klicke auf die Systemnummer:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image-2023-7-14_16-12-29.png?version=1&modificationDate=1689343949417&api=v2",
+              "path": "images/post_transport/managed-system-config/32-image-2023-7-14_16-12-29.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke nochmal auf die Systemnummer:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image-2023-7-14_16-14-2.png?version=1&modificationDate=1689344042953&api=v2",
+              "path": "images/post_transport/managed-system-config/31-image-2023-7-14_16-14-2.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle aus der Liste links das System aus und wähle den Reiter \"Server und SAP-Router\""
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image-2023-7-14_16-15-28.png?version=1&modificationDate=1689344128833&api=v2",
+              "path": "images/post_transport/managed-system-config/28-image-2023-7-14_16-15-28.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Vergewissere dich, dass folgende Daten eingetragen sind:"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Router:** Main"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Hostname:** saprouter"
+            },
+            {
+              "kind": "markdown",
+              "text": "**IP-Adresse:** 131.159.8.236"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Dienstport:** 3299"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn du diese Werte eingetragen hast, kannst du das SAP-Launchpad wieder schließen und mit Schritt 12 fortfahren"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Schritt 12: Konfiguration prüfen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Zurück im Konfigurationsmanager drücke auf weiter um zum 6. Feld \"Konfiguration prüfen\" zu gelangen."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_18-32-32.png?version=1&modificationDate=1588177912967&api=v2",
+              "path": "images/post_transport/managed-system-config/29-image2020-4-29_18-32-32.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle auch hier bei allen Einträgen den Ausführungsstatus \"Ausführen\" und klicke dann auf \"Alle Ausführen\". Bestätige wieder mit \"Allen Aktivitäten\""
+            },
+            {
+              "kind": "markdown",
+              "text": "Danach bist du mit der Konfiguration fertig. Versuche auf mögliche Fehlermeldungen zu reagieren. Meist sagt dir die Fehlermeldung, was du tun musst."
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn die Konfiguration vollständig erfolgreich war, sollte der letzte Reiter (7. Abgeschlossen) wie folgt aussehen:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918500/image2020-4-29_18-35-10.png?version=1&modificationDate=1588178070540&api=v2",
+              "path": "images/post_transport/managed-system-config/30-image2020-4-29_18-35-10.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke auf \"Fertigstellen\" um die Konfiguation abzuschließen."
+            }
+          ],
+          "title": "Managed System Configuration / Konfiguration der verwalteten Systeme (Minimale Konfiguration)",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67918500/Managed+System+Configuration+Konfiguration+der+verwalteten+Systeme+Minimale+Konfiguration"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "Nachdem du ein System im Solution manager für das Monitoring vorbereitet hast (siehe auch [Managed System Configuration / Konfiguration der verwalteten Systeme (Minimale Konfiguration)](https://collab.dvb.bayern/spaces/TUMucc/pages/67918500/Managed+System+Configuration+Konfiguration+der+verwalteten+Systeme+Minimale+Konfiguration)) kannst du das System nun aktiv einbinden. Befolge dazu folgende Schritte:"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Im Solution Manager:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Den Solution Manager findest du unter [https://i04.sapucc.in.tum.de/sap/bc/webdynpro/sap/wd_sise_main_app?sap-client=101&sap-language=DE#](https://i04.sapucc.in.tum.de/sap/bc/webdynpro/sap/wd_sise_main_app?sap-client=101&sap-language=DE). Wähle hier im linken Navigationsmenü hier zu *Application Operations --> System-Monitoring* und wähle in diesem Fenster  *5 Umfang definieren*(siehe Screenshot)."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918772/image2020-6-15_14-10-23.png?version=1&modificationDate=1592222997360&api=v2",
+              "path": "images/post_transport/solman-monitoring/01-image2020-6-15_14-10-23.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Stelle hier zunächst sicher, dass du deine Arbeitsmappe geleert hast."
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle als nächstes das System, dass du zum Monitoring hinzufügen möchtest aus der unteren Liste aus, klicke auf *Hinzufügen* und klicke dann oben auf *Weiter*. Beachte, dass du hier auch mehr als ein System auswählen kannst."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918772/image2020-6-15_15-59-9.png?version=1&modificationDate=1592229523907&api=v2",
+              "path": "images/post_transport/solman-monitoring/02-image2020-6-15_15-59-9.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle hier *Bearbeiten* und klicke dann hinter **jedem** Listeneintrag auf *Vorlagen* zuordnen. Wähle hier immer die Vorlage, die in Klammern mit *(v2)* betitelt ist. Gibt es keine solche Vorlage, wähle *Keine*."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918772/image2020-6-15_16-10-9.png?version=1&modificationDate=1592230183720&api=v2",
+              "path": "images/post_transport/solman-monitoring/03-image2020-6-15_16-10-9.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke dann links oben auf *Alle Tabellenzeilen markieren* und dann auf *Übernehmen und Aktivieren*."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918772/image2020-6-15_16-16-41.png?version=1&modificationDate=1592230575680&api=v2",
+              "path": "images/post_transport/solman-monitoring/04-image2020-6-15_16-16-41.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Warte bis beide Balken auf grün stehen und klicke dann auf *Weiter* und dann auf *Fertigstellen.*"
+            },
+            {
+              "kind": "markdown",
+              "text": "**"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918772/image2020-6-15_16-21-25.png?version=1&modificationDate=1592230859933&api=v2",
+              "path": "images/post_transport/solman-monitoring/05-image2020-6-15_16-21-25.png"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Überprüfe die Einbindung in der Systemüberwachung"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die System überwachung findest du unter [http://i04lp1.informatik.tu-muenchen.de/sap/bc/ui5_ui5/sap/sysmon_desktop/index.html?&sap-client=101&sap-language=DE#](http://i04lp1.informatik.tu-muenchen.de/sap/bc/ui5_ui5/sap/sysmon_desktop/index.html?&sap-client=101&sap-language=DE)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Hier solltest du im Eingabefeld \"*\" und dann \"Enter\" eingeben, sonst kann es zu Bugs kommen. Du solltest nun die Systemüberwachung vor dir sehen:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918772/image2020-6-15_16-26-1.png?version=1&modificationDate=1592231135403&api=v2",
+              "path": "images/post_transport/solman-monitoring/06-image2020-6-15_16-26-1.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn alles gut gelaufen ist, sollte das von dir angepeilte System in der Liste der überwachten Systeme vorkommen."
+            },
+            {
+              "kind": "markdown",
+              "text": "!! Wichtiger Hinweis: Dass die Systeme in der Liste auftauchen, kann ein paar Minuten dauern, deswegen muss man mit der Überprüfung nach der Eintragung etwas warten."
+            }
+          ],
+          "title": "System in Monitoring einbinden",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67918772/System+in+Monitoring+einbinden"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "note",
+              "text": "Um mit dem OS Monitoring auch das HANA Backup Monitoring einzubinden, kann dieser Artikel befolgt werden: node_exporter + HANA Backup monitoring"
+            },
+            {
+              "kind": "markdown",
+              "text": "Auf dieser Seite finden Sie Informationen zu dem node_exporter und wie dieser auf einem Suse Linux Enterprise (ppc64le) System installiert werden kann bzw. wurde."
+            },
+            {
+              "items": [
+                "Binärdateien: **/usr/local/bin**",
+                "Port: **9100**"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "kind": "note",
+              "text": "AIX Support\n\nAIX (ppc64) wird (noch) nicht bzw. nur mangelhaft unterstützt. Im Ticket kann der Status der AIX-Unterstützung überprüft werden."
+            },
+            {
+              "kind": "markdown",
+              "text": "Um die Installation zu vereinfachen wurde ein Skript erstellt, wodurch der node_exporter auf einem System installiert wird. Um den node_exporter auf dem System zu installieren, wählen Sie sich per ssh auf dem Zielsystem ein und führen Sie folgendes Kommando aus:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n/global/shared/Monitoring/scripts/setup_node_exporter.sh"
+            },
+            {
+              "kind": "markdown",
+              "text": "Beachten Sie die Ausgabe im Terminal! Sollte die Installation erfolgreich sein, müssen Sie nur noch die Prometheus mit der neuen Instanz bekannt machen. Loggen Sie sich hierzu auf [uccservice.ucc.in.tum.de](http://uccservice.ucc.in.tum.de/) ein und führen folgendes Kommando aus:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nvim /etc/prometheus/prometheus.yml"
+            },
+            {
+              "kind": "markdown",
+              "text": "Fügen Sie dem Array das Zielsystem hinzu:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n- job_name: 'node_exporter'\n    scrape_interval: 2m # 2 minutes\n    static_configs:\n      - targets: ['uccservice.ucc.in.tum.de:9100', 'zielsystem:9100']"
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend muss prometheus neu geladen werden:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsudo systemctl restart prometheus.service"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die geladene Konfiguration kann unter folgendem Link überprüft werden: [http://uccservice.ucc.in.tum.de:9090/status](http://uccservice.ucc.in.tum.de:9090/status)"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Skript"
+            },
+            {
+              "kind": "markdown",
+              "text": "Sollte auf mehreren Systemen der node_exporter installiert werden müssen, erstellen Sie auf der **uccservice** als erstes eine Datei mit einer \"newline\" getrennten Liste an Hostnamen."
+            },
+            {
+              "kind": "code",
+              "text": "demo.txt\nZeilenumbrüche aktivieren\nAls Text kopieren\ns87lp1\ns80lp1\nusw."
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend führen Sie folgenden Befehl aus:"
+            },
+            {
+              "kind": "code",
+              "text": "/global/shared/Monitoring/scripts/setup_node_exporter.sh --file demo.txt"
+            },
+            {
+              "kind": "markdown",
+              "text": "Vergessen Sie nicht im Anschluss Prometheus mit den neuen Instanzen von node_exporter bekannt zu machen. Wie das geht ist weiter oben beschrieben."
+            },
+            {
+              "kind": "heading",
+              "level": 1,
+              "text": "Manuelle Installation"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn Sie alle Schritte manuell ausführen wollen, folgen Sie bitte dieser Anleitung. Als erstes öffnen Sie die [Downloadseite](https://prometheus.io/download/) un laden die aktuellste Version des node_exporter herunter. Alternativ können Sie dies auch mit folgendem Befehl machen:"
+            },
+            {
+              "kind": "code",
+              "text": "wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-ppc64le.tar.gz"
+            },
+            {
+              "kind": "markdown",
+              "text": "Extrahieren Sie das heruntergeladene Archiv und verschieben Sie die Binärdatei nach `/usr/local/bin :`"
+            },
+            {
+              "kind": "code",
+              "text": "tar xvfz node_exporter-1.0.1.linux-ppc64le.tar.gz\nsudo mv node_exporter-1.0.1.linux-ppc64le/node_exporter /usr/local/bin"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die restlichen, nicht mehr benötigten Dateien können Sie nun entfernen:"
+            },
+            {
+              "kind": "code",
+              "text": "rm -r node_exporter-1.0.1.linux-ppc64le"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstellen Sie den Benutzer node_exporter und übertragen Ihm den Besitzt:"
+            },
+            {
+              "kind": "code",
+              "text": "sudo useradd -rs /bin/false node_exporter\nsudo chown -R node_exporter: /usr/local/bin/node_exporter"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstellen Sie im Verzeichnis `/etc/systemd/system/node_exporter.service` eine systemd-Datei mit folgendem Inhalt:"
+            },
+            {
+              "kind": "code",
+              "text": "[Unit]\nDescription=Node Exporter\nAfter=network.target\n\n[Service]\nUser=node_exporter\nGroup=users\nType=simple\nExecStart=/usr/local/bin/node_exporter \\\n  --collector.systemd \\\n  --collector.processes\n\n[Install]\nWantedBy=multi-user.target"
+            },
+            {
+              "kind": "markdown",
+              "text": "Nun müssen sie noch dem systemd-Daemin neu laden und den Service aktivieren und starten:"
+            },
+            {
+              "kind": "code",
+              "text": "sudo systemctl daemon-reload\nsudo systemctl enable node_exporter\nsudo systemctl start node_exporter"
+            },
+            {
+              "kind": "markdown",
+              "text": "Zum Schluss fügen Sie den HTTP-Endpoint der Datei`/etc/prometheus/prometheus.yml hinzu:`"
+            },
+            {
+              "kind": "code",
+              "text": "- job_name: 'node_exporter'\n    scrape_interval: 2m # 2 minutes\n    static_configs:\n      - targets: ['localhost:9100']"
+            }
+          ],
+          "title": "node_exporter",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67919113/node_exporter"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "HANA Backup Monitoring explained"
+            },
+            {
+              "kind": "note",
+              "text": "Damit hana_backup_exporter.sh funktioniert sind folgende Bedingungen notwendig\n\nHANA SID: X## oder XX# (z.B. W30 oder SH1) (mehrere Tenants sind möglich)\nPasswort entspricht UCC-Standard"
+            },
+            {
+              "kind": "markdown",
+              "text": "Das Backup Monitoring funktioniert folgendermaßen:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Durch einen Cronjob wird regelmäßig (Stand13.08.2025 : Stündlich) ein Skript ausgeführt, das über einen hdbsql command den Status des letzten Backups von allen Tenants der Datenbank auf dem System abfragt."
+            },
+            {
+              "kind": "markdown",
+              "text": "Dieser Status wird über einen textfile_collector in das OS Monitoring des Node Exporters angehängt und an Prometheus und Grafana weitergegeben."
+            },
+            {
+              "kind": "markdown",
+              "text": "In Grafana ist ein Alert konfiguriert, der eine Email an die Basis sendet, wenn ein Backup nicht erfolgreich war oder in der Datenabfrage ein Problem aufgetreten ist."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1754025828/image-2025-7-8_13-17-47.png?version=1&modificationDate=1751973468120&api=v2",
+              "path": "images/post_transport/node-exporter-hana/01-image-2025-7-8_13-17-47.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Skripte auf NFS: /global/shared/Monitoring/scripts/"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Local file locations:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Skript: /usr/local/bin/hana_backup_exporter.sh"
+            },
+            {
+              "kind": "markdown",
+              "text": "Textfile: /var/lib/node_exporter/textfile_collector/hana_backup.prom"
+            },
+            {
+              "kind": "markdown",
+              "text": "Crontab log: /var/log/hana_backup_exporter.log"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Installation"
+            },
+            {
+              "kind": "markdown",
+              "text": "Mit diesem Skript kann der Node Exporter mit OS Monitoring und HANA Backup Monitoring installiert werden"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n/global/shared/Monitoring/scripts/setup_node_exporter_hana.sh"
+            },
+            {
+              "kind": "markdown",
+              "text": "Beachte die Ausgabe im Terminal! Sollte die Installation erfolgreich sein, muss nur noch Prometheus mit der neuen Instanz bekannt gemacht werden. Logge dich hierzu auf [monitoring.ucc.cit.tum.de](http://monitoring.ucc.cit.tum.de/) ein und führen folgendes Kommando aus:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nvim /etc/prometheus/prometheus.yml"
+            },
+            {
+              "kind": "markdown",
+              "text": "Füge dem Array das Zielsystem hinzu:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n- job_name: 'node_exporter'\n    scrape_interval: 2m # 2 minutes\n    static_configs:\n      - targets: ['monitoring.ucc.cit.tum.de:9100', 'zielsystem:9100']"
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend muss prometheus neu geladen werden:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsudo systemctl restart prometheus.service"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die geladene Konfiguration kann unter folgendem Link überprüft werden: [http://monitoring.ucc.cit.tum.de:9090/](http://monitoring.ucc.cit.tum.de:9090/)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Manuelle Installation"
+            },
+            {
+              "kind": "markdown",
+              "text": "Um den Node Exporter und das HANA Backup Monitoring manuell zu installieren wollen, können folgende Schritte befolgt werden. Als erstes öffne die [Downloadseite](https://prometheus.io/download/) und lade die aktuellste Version des node_exporter herunter. Alternativ kann dies auch mit folgendem Befehl gemacht werden:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nwget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-ppc64le.tar.gz"
+            },
+            {
+              "kind": "markdown",
+              "text": "Extrahiere das heruntergeladene Archiv und verschiebe die Binärdatei nach `/usr/local/bin :`"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ntar xvfz node_exporter-1.0.1.linux-ppc64le.tar.gz\n\nsudo mv node_exporter-1.0.1.linux-ppc64le/node_exporter /usr/local/bin"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die restlichen, nicht mehr benötigten Dateien können nun entfernt werden:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nrm -r node_exporter-1.0.1.linux-ppc64le"
+            },
+            {
+              "kind": "markdown",
+              "text": "Kopiere das HANA Backup Monitoring Skript vom NFS auf das System:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncp /global/shared/Monitoring/scripts/hana_backup_exporter.sh /usr/local/bin"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstelle das Directory für den Textfile collector:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsudo mkdir -p /var/lib/node_exporter/textfile_collector"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstelle den Benutzer node_exporter und übertrage ihm den Besitz an den Directories:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsudo useradd -rs /bin/false node_exporter\n\nsudo chown -R node_exporter: /usr/local/bin/node_exporter\n\nsudo chown -R node_exporter: /var/lib/node_exporter"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstelle im Verzeichnis `/etc/systemd/system/node_exporter.service` eine systemd-Datei mit folgendem Inhalt:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n[Unit]\n\nDescription=Node Exporter\n\nAfter=network.target\n\n[Service]\n\nUser=node_exporter\n\nGroup=users\n\nType=simple\n\nExecStart=/usr/local/bin/node_exporter \\\n\n  --collector.systemd \\\n\n  --collector.processes \\\n\n  --collector.textfile.directory=/var/lib/node_exporter/textfile_collector/\n\n[Install]\n\nWantedBy=multi-user.target"
+            },
+            {
+              "kind": "markdown",
+              "text": "Nun musst du noch den systemd-Daemon neu laden und den Service aktivieren und starten:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nsudo systemctl daemon-reload\n\nsudo systemctl enable node_exporter\n\nsudo systemctl start node_exporter"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstelle einen Cronjob, der stündlich das hana_backup_exporter.sh Skript ausführt:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncrontab -e\n\n0 * * * * /usr/local/bin/hana_backup_exporter.sh >> /var/log/hana_backup_exporter.log 2>&1"
+            },
+            {
+              "kind": "markdown",
+              "text": "Zum Schluss füge den HTTP-Endpoint der Datei /etc/prometheus/prometheus.yml auf monitoring.ucc.cit.tum.de hinzu:"
+            },
+            {
+              "kind": "code",
+              "text": "- job_name: 'node_exporter'\n    scrape_interval: 2m # 2 minutes\n    static_configs:\n      - targets: ['localhost:9100']"
+            }
+          ],
+          "title": "node_exporter + HANA Backup monitoring",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/1754025828/node_exporter+HANA+Backup+monitoring"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "Uptimerobot ist ein Monitoring Tool zum Überwachen unserer Systemlandschaft."
+            },
+            {
+              "kind": "markdown",
+              "text": "Es ist unter [https://uptimerobot.com/](https://uptimerobot.com/) erreichbar."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Statuspage"
+            },
+            {
+              "kind": "markdown",
+              "text": "(zum Überwachen der Systeme)"
+            },
+            {
+              "kind": "markdown",
+              "text": "SID Status Page: [https://stats.uptimerobot.com/NkYNCRgckj](https://stats.uptimerobot.com/NkYNCRgckj)"
+            },
+            {
+              "kind": "markdown",
+              "text": "PW:<retrieve from approved secret store>"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Uptimerobot Management"
+            },
+            {
+              "kind": "markdown",
+              "text": "(zur Konfiguration neuer Systemeinträge und der Statusseite)"
+            },
+            {
+              "kind": "markdown",
+              "text": "User: [statuspage@ucc.cit.tum.de](mailto:statuspage@ucc.cit.tum.de)\nPW:<retrieve from approved secret store>"
+            },
+            {
+              "kind": "markdown",
+              "text": "Neue UI Pflege:"
+            },
+            {
+              "kind": "markdown",
+              "text": "[https://uptimerobot.ucc.cit.tum.de](https://uptimerobot.ucc.cit.tum.de/)\nUser: admin"
+            },
+            {
+              "kind": "markdown",
+              "text": "PW:<retrieve from approved secret store>"
+            },
+            {
+              "kind": "markdown",
+              "text": "Basis Access: Keepass"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die Konfiguration erfolgt über GitHub [https://github.com/FloEc/uptimerobot-management](https://github.com/FloEc/uptimerobot-management)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Scope (WIP)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Überwacht wird:"
+            },
+            {
+              "items": [
+                "Uptime",
+                "SSL Cert",
+                "Response Time"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Vorbedingung"
+            },
+            {
+              "kind": "markdown",
+              "text": "Um die Konfigurationsdatei des Uptimerobots bearbeiten zu können, benötigst du einen TUM-Github-Account. Bitte erstelle auf [https://github.com/](https://github.com/) einen Account mit deiner TUM-E-Mail-Adresse und schicke deinen Account-Namen an die im Wiki genannte UptimeRobot-Kontaktperson des UCC, damit sie dich für die Datei freischalten kann."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Konfiguration"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die Konfiguration erfolgt über folgendes File:"
+            },
+            {
+              "kind": "markdown",
+              "text": "[https://github.com/FloEc/uptimerobot-management/blob/main/uptimerobot/config.yaml](https://github.com/FloEc/uptimerobot-management/blob/main/uptimerobot/config.yaml)"
+            },
+            {
+              "kind": "markdown",
+              "text": "In dieses können Systeme eingetragen und ausgetragen werden. Danach läuft automatisch eine Pipeline welche die Änderungen synchronisiert. Ein Update ist im Moment noch nicht möglich."
+            },
+            {
+              "kind": "markdown",
+              "text": "Für ein neues System im entsprechend Abschnitt einfach den folgenden EIntrag anpasen und einfügen:"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n  I04:\n    url: \"https://i04.sapucc.in.tum.de/\""
+            },
+            {
+              "kind": "markdown",
+              "text": "Zum Löschen eines System einfach den Eintrag entfernen."
+            }
+          ],
+          "title": "Uptimerobot",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/888549578/Uptimerobot"
+        }
+      ]
+    },
+    {
+      "title": "HANA Backup einrichten",
+      "intro": "Die automatisierten Installationsschritte 1 und 2 sind ausgelassen. Dieser Abschnitt enthält die verbleibenden manuellen Aufgaben und deren Wiki-Unterseiten.",
+      "pages": [
+        {
+          "title": "HANA Backup – verbleibende manuelle Schritte",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67919171/SAP+HANA+Backup+einrichten",
+          "blocks": [
+            {
+              "kind": "note",
+              "text": "Die vorhandene HANA-Backup-Automatisierung deckt die Installationsschritte 1 und 2 ab. Diese automatisierten Inhalte sind hier bewusst ausgelassen. Die folgenden Schritte 3–7 bleiben manuell."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919171/HANA_Backup.png?version=1&modificationDate=1626967321767&api=v2",
+              "path": "images/post_transport/hana-backup-overview/01-HANA_Backup.png"
+            },
+            {
+              "kind": "list",
+              "ordered": true,
+              "start": 3,
+              "items": [
+                "[Anbindung des TDP Clients an TSM Knoten](https://collab.dvb.bayern/spaces/TUMucc/pages/67919411/Anbindung+des+TDP+Clients+an+TSM+Knoten)",
+                "(auslaufend, neue Backups werden in HANA Cockpit (siehe 5.) eingeplant) [SOLMAN Backup Kalender / DBA Planning Calendar](https://collab.dvb.bayern/spaces/TUMucc/pages/67918776/HowTo+SOLMAN+Backup+Kalender+DBA+Planning+Calendar) einplanen (Freien Zeitpunkt in der Kunden-System-Zuordnung (KSZ) ermitteln)",
+                "[HANA Cockpit: Wöchentliches Backup (backint) einplanen](https://collab.dvb.bayern/spaces/TUMucc/pages/1559595206/HANA+Cockpit+W%C3%B6chentliches+Backup+backint+einplanen) + [Einplanung monatliches Backup auf NFS mit HANA Cockpit](https://collab.dvb.bayern/spaces/TUMucc/pages/1433239668/Einplanung+monatliches+Backup+auf+NFS+mit+HANA+Cockpit)",
+                "Einplanungszeitpunkt in die KSZ eintragen",
+                "[Profile des Applikationsservers](https://collab.dvb.bayern/spaces/TUMucc/pages/1643513973/Backup+Archivierung+der+Profile+eines+Applikationsservers+RZ10+Parameter) archivieren"
+              ]
+            },
+            {
+              "kind": "warning",
+              "text": "Wenn v5 benutzt wird, muss die agent.lic noch manuell hinzugefügt werden:\n\nNimm diese File\nagent.lic und füge diese in:\n\n/usr/sap/<SID-DB>/SYS/global/hdb/opt/hdbconfig/\n\nAlternativ kannst du diesen Befehl ausführen:\n\ncp /global/shared/Licenses/hanabackup/agent.lic /usr/sap/<HANA-SID>/SYS/global/hdb/opt/hdbconfig/"
+            }
+          ]
+        },
+        {
+          "title": "Zugangsdaten für TSM Nodes",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67918695/Zugangsdaten+f%C3%BCr+TSM+Nodes",
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "Aktuell hat das UCC zwei Typen von TSM Nodes:"
+            },
+            {
+              "items": [
+                "Nodes für Dateiarchivierung (HCC, HCC-SEE)",
+                "Nodes für DB Backup (Liste kann über den Verwaltungsaccount angezeigt werden -> [Verwaltungsaccount für UCC TSM Backupnodes](https://collab.dvb.bayern/spaces/TUMucc/pages/67918538/Verwaltung+TSM+Nodes))"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "kind": "markdown",
+              "text": "Grundsätzlich gilt für alle Nodes:"
+            },
+            {
+              "items": [
+                "Benutzername = Nodename"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "kind": "warning",
+              "text": "Zugangspasswörter und konkrete Zugangsdaten werden nicht in den Quellcode der Streamlit-Anwendung kopiert. Öffne dafür den verlinkten, zugriffsgeschützten Wiki-Artikel."
+            }
+          ]
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "TDP Setup"
+            },
+            {
+              "kind": "markdown",
+              "text": "Im Ordner /opt/tivoli/tsm/tdp_hana das setup.sh Skript zur Konfiguration ausführen (als root):"
+            },
+            {
+              "kind": "code",
+              "text": "/opt/tivoli/tsm/tdp_hana/setup.sh"
+            },
+            {
+              "kind": "markdown",
+              "text": "und folgende Werte angeben:"
+            },
+            {
+              "kind": "code",
+              "text": "Please enter the SAP HANA(R) system ID [H04]: <SID>\nPlease enter instance number [04]: <Instanznummer>\nEnter the name of the database user with System Privileges INIFILE ADMIN, CATALOG READ and SERVICE ADMIN [SYSTEM]: SYSTEM\nPlease enter password of database user SYSTEM: #Passwort user SYSTEM im SystemDB"
+            },
+            {
+              "kind": "code",
+              "text": "Do you want to setup the TSM configuration now [y/n]: y\nDo you want to use automatic password handling (passwordaccess generate) [y/n]: n\nPlease enter the TSM server name as defined in dsm.sys: UCC<SID>BACKUP_HANA\nPlease enter the TSM node name: UCC<SID>BACKUP_HANA\n(Number of Sessions: 1)\nPlease enter the TSM management class(es) for database backups: MDB\nPlease enter the TSM management class(es) for log file backups: MLOG"
+            },
+            {
+              "kind": "code",
+              "text": "BKI0049I: Enter the password for node UCCH04BACKUP_HANA on server UCCH04BACKUP_HANA: <retrieve from approved secret store>\n\nDo you want to create dedicated configuration profiles for your tenant databases\nwith IBM Spectrum Protect for ERP Data Protection for SAP HANA(R)? [y/n]: y\nDo you want to configure IBM Spectrum Protect for ERP Data Protection for SAP HANA(R) to protect the tenant database BD1? [y/n] n"
+            },
+            {
+              "kind": "markdown",
+              "text": "Falls die Meldung"
+            },
+            {
+              "kind": "code",
+              "text": "Failed to set the password for the TSM node(s).\nPlease check the output above, correct the error and re-run the command as user\nh04adm: '/opt/tivoli/tsm/tdp_hana/hdbbackint -p\n/usr/sap/H04/SYS/global/hdb/opt/hdbconfig/initH04.utl -f password'"
+            },
+            {
+              "kind": "markdown",
+              "text": "erscheint, hat man sehr wahrscheinlich irgendwo einen Fehler während der Konfiguration gemacht. Lösung: Den angegebenen Befehl ausführen, ggf. die auftretenden Fehler korrigieren, das Passwort eingeben und bei erfolgreichem Beenden des Befehls das Setup mit den gleichen Eingaben noch einmal starten."
+            },
+            {
+              "kind": "markdown",
+              "text": "Ein erfolgreiches Setup wird mit der Meldung"
+            },
+            {
+              "kind": "code",
+              "text": "*** Setup finished successfully! ***"
+            },
+            {
+              "kind": "markdown",
+              "text": "quittiert."
+            },
+            {
+              "kind": "warning",
+              "text": "Falls Schritt 1,2 per Skript gemacht wurden:\n\nWenn Skript v5 benutzt wurde, muss man in dieser Reihenfolge arbeiten:\n\n1: setup.sh normal ausführen\n2: Den Befehl\n\ncp /global/shared/Licenses/hanabackup/agent.lic /usr/sap/<HANA-SID>/SYS/global/hdb/opt/hdbconfig/\n\nausführen, um das agent.lic File zu kopieren.(Alternative: agent.lic herunterladen und in den Ordner /usr/sap/<SID-DB>/SYS/global/hdb/opt/hdbconfig/ einfügen)\n3: setup.sh nochmal ausführen\n→ folgende Eingabe beachten:\n\nDo you want to re-enter the passwords for all IBM Spectrum Protect nodes now? [y/n]: n"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "CONFIG FILE Location"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn du beim ersten Mal Skriptausführen falsche Werte eingegeben hast, kannst du diese Werte leider nicht nochmals neu im setup-Skript eingeben. Stattdessen musst du deine Einträge im Config-file des HANA-backints korrigieren."
+            },
+            {
+              "kind": "markdown",
+              "text": "Das Config-file findest du unter: /usr/sap/<SID>/SYS/global/hdb/opt/hdbconfig/init<SID>.utl"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Bekannte Fehler:"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Problem:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wenn folgende Meldung kommt:"
+            },
+            {
+              "kind": "markdown",
+              "text": "#SOFTWAREID \"backint 1.50\" \"IBM Spectrum Protect for Enterprise Resource Planning - Data Protection for SAP HANA(R) 8.1.11.1\"\nBKI2027I: Using IBM Spectrum Protect-API version 8.1.26.0 (compiled with 8.1.0.2).\nBKI2000I: Successfully connected to ProLE on port tdphana.\nBKI0005I: Start of program at: Do 09 Okt 2025 16:03:43 CEST.\nBKI0455E: License file /usr/sap/W21/SYS/global/hdb/opt/hdbconfig/agent.lic does not exist."
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Dann musst du die agent.lic file noch manuell hinzufügen. Nimm diese File [agent.lic](https://collab.dvb.bayern/download/attachments/67919411/agent.lic?version=1&modificationDate=1760018840650&api=v2) und füge diese in:"
+            },
+            {
+              "kind": "markdown",
+              "text": "/usr/sap/<SID-DB>/SYS/global/hdb/opt/hdbconfig/"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Manueller Test"
+            },
+            {
+              "kind": "markdown",
+              "text": "Nun musst du noch in der SQL-Console der/des Tenants und der System-DB in HANA Studio folgenden Befehl eingeben:"
+            },
+            {
+              "kind": "code",
+              "text": "ALTER SYSTEM RECONFIGURE SERVICE ('','',0)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/image2020-11-20_16-42-11.png?version=1&modificationDate=1605886931600&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/02-image2020-11-20_16-42-11.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/image2020-11-20_16-42-56.png?version=1&modificationDate=1605886976550&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/03-image2020-11-20_16-42-56.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Teste nun in HANA Studio mit Hilfe der SYSTEMDB (kleinere Datenmenge), ob du im BACKINT ein Backup ablegen kannst:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/image2020-11-20_16-44-51.png?version=1&modificationDate=1605887091100&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/04-image2020-11-20_16-44-51.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/image2020-11-20_16-46-6.png?version=1&modificationDate=1605887166467&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/05-image2020-11-20_16-46-6.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/image2020-11-20_16-47-55.png?version=1&modificationDate=1605887275400&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/06-image2020-11-20_16-47-55.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Hat das geklappt kann mit der Einrichtung des TSM Backup in der HANA begonnen werden. Siehe dafür diese Anleitung: [HowTo: SOLMAN Backup Kalender / DBA Planning Calendar](https://collab.dvb.bayern/spaces/TUMucc/pages/67918776/HowTo+SOLMAN+Backup+Kalender+DBA+Planning+Calendar)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Fehler beim Backup"
+            },
+            {
+              "kind": "markdown",
+              "text": "Sollte es jedoch beim Backup zu Fehlern kommen, schaue dir unbedingt die Datei */hana/shared/BD1/global/hdb/opt/hdbconfig/init<SID>.utl*an. In dieser Datei werden die ganzen TSM Verbindungsdaten gespeichert. Prüfe hier, ob alle Einträge richitg sind und stelle sicher, dass nicht irgendwleche komischen Sonderzeichen in deinen Einträgen zu finden sind. Manchmal interpretiert Linux beim Einlesen die Rücktaste, sowie die Entfernen-Taste als merkwürdiges Sonderzeichen. Wenn du einen Fehler in der Datei korrigiert hast, vergisst nicht, dass System neuzustarten."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Backint exited with exit code 2 instead of 0"
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Symptom"
+            },
+            {
+              "kind": "markdown",
+              "text": "Manchmal erhälst du beim Backup folgenden Fehler:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/HANA%201.png?version=1&modificationDate=1658149195837&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/07-HANA_201.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Häufig tritt dieser Fehler nur bei einer Instanz auf, also zum Beispiel auf der SYSTEMDB, währende es auf dem Tenant funktioniert."
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "text": "Ursache & Lösung"
+            },
+            {
+              "kind": "markdown",
+              "text": "Dieser Fehler kann 2 Ursachen haben. Entweder hast du die Anbindung des Clienten an den Knoten nicht richtig abgeschlossen - in diesem Fall solltest du nocheinmal oben die Datei *setup.sh*ausführen und hier sichergehen, dass du keine Fehler gemacht hast, bzw. hier auf Fehlersuche gehen. Diese Ursache kommt nur in Betracht, wenn du weder SYSTEMDB noch Tenant backupen kannst."
+            },
+            {
+              "kind": "markdown",
+              "text": "Deutlich häufiger ist eine fehlerhafte Konfiguration des HANA Profils (das passiert manchmal bei der Installation des TDP Clienten). Wähle in HANA Studio die SYSTEMDB mit einem Rechtsklick und wähle *Configuration and Monitoring → Open Administration.*"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/HANA%202.png?version=1&modificationDate=1658149994773&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/08-HANA_202.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wechsle in den Reiter *Configuration* und gib in das Suchfeld *Backup*ein. Achte hier nun auf die Zeilen *catalog_backup_parameter_file*und *catalog_backup_using_backint,* wenn hier zum Beispiel nur das Database-Feld, aber nicht das System-Feld ausgefüllt ist, kannst du zwar den Tenant über das Backend backupen, aber nicht die SystemDB."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/HANA%207.png?version=1&modificationDate=1658152172213&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/09-HANA_207.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Daher musst du die leeren Felder entsprechend ausfüllen:"
+            },
+            {
+              "kind": "markdown",
+              "text": "*catalog_backup_parameter_file = /usr/sap/<SID>/SYS/global/hdb/opt/hdbconfig/init<SID>.utl*"
+            },
+            {
+              "kind": "markdown",
+              "text": "*catalog_backup_using_backint = true*"
+            },
+            {
+              "kind": "markdown",
+              "text": "*data_backup_parameter_file = /usr/sap/V04/SYS/global/hdb/opt/hdbconfig/initV04.utl*"
+            },
+            {
+              "kind": "markdown",
+              "text": "*log_backup_parameter_file = /usr/sap/V04/SYS/global/hdb/opt/hdbconfig/initV04.utl*"
+            },
+            {
+              "kind": "markdown",
+              "text": "*log_backup_using_backint = true*"
+            },
+            {
+              "kind": "markdown",
+              "text": "Speichere die neuen Einträge:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/HANA%206.png?version=2&modificationDate=1658152189813&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/10-HANA_206.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Versuche jetzt erneut, das Backup zu starten. Diesmal sollte es funktionieren:"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67919411/HANA%208.png?version=1&modificationDate=1658152377680&api=v2",
+              "path": "images/post_transport/hana-tdp-tsm/11-HANA_208.png"
+            }
+          ],
+          "title": "Anbindung des TDP Clients an TSM Knoten",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67919411/Anbindung+des+TDP+Clients+an+TSM+Knoten"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "**Voraussetzungen**:"
+            },
+            {
+              "items": [
+                "Managed System Configuration wurde abgeschlossen, falls nicht kann auch eine manuelle Datenbankverbindung angelegt werden (siehe**Manuelle Datenbankverbindung anlegen** am Ende dieses Artikels)",
+                "Backup wurde für HANA / DB2 eingerichtet"
+              ],
+              "kind": "list",
+              "ordered": true
+            },
+            {
+              "kind": "markdown",
+              "text": "1. Einloggen mittels SAPGUI auf I04 (MASTER-ADM) Mandant 101"
+            },
+            {
+              "kind": "code",
+              "text": "TA: DBACOCKPIT"
+            },
+            {
+              "kind": "markdown",
+              "text": "2. DBA Planning Calender → Datenbank angeben (Achtung bei HANA steht hier die Tenant SID)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-35-10.png?version=1&modificationDate=1583318948423&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/01-image2020-3-4_11-35-10.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "3. Öffne Kundensystemzuordnung und prüfe im Tab \"Backup Schedule\" wann ein freier Slot ist z.B."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-37-14.png?version=1&modificationDate=1583318948393&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/02-image2020-3-4_11-37-14.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Anschließend Kundensystemzuordnung speichern"
+            },
+            {
+              "kind": "markdown",
+              "text": "4. Für gewählten Slot einen neuen Eintrag erstellen"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-38-52.png?version=1&modificationDate=1583318948327&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/03-image2020-3-4_11-38-52.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "5. Action Parameters setzen → Backint und Uhrzeit"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-39-56.png?version=1&modificationDate=1583318948293&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/04-image2020-3-4_11-39-56.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "6. Wiederholungsmuster → Woche(n); Wiederholungszeitraum setzen → \"Kein Ende\""
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-11-20_16-59-33.png?version=1&modificationDate=1605887973707&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/05-image2020-11-20_16-59-33.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "7. Abschließen mit Button \"Add\""
+            },
+            {
+              "kind": "markdown",
+              "text": "8. Testlauf durchführen → Eintrag auswählen und Button \"Execute\""
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-42-11.png?version=1&modificationDate=1583318948217&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/06-image2020-3-4_11-42-11.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "9. Ein neuer Eintrag sollte angelegt werden → nach wenigen Minuten auf Refresh klicken → Eintrag sollte noch immer blau sein (nicht rot!)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-44-3.png?version=1&modificationDate=1583318948183&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/07-image2020-3-4_11-44-3.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Falls Backup erfolgreich durchgelaufen ist wird der Eintrag \"grün\" angezeigt"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_12-20-11.png?version=1&modificationDate=1583320811883&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/08-image2020-3-4_12-20-11.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "**Troubleshooting**"
+            },
+            {
+              "kind": "markdown",
+              "text": "=> Wenn rot hat das Backup nicht geklappt. In diesem Fall muss selbstständig auf Fehlersuche gegangen werden."
+            },
+            {
+              "kind": "markdown",
+              "text": "Als ersten Hinweis kann das Job log dienen, welches direkt durch doppelklick auf den Eintrag aufgerufen werden kann"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-47-55.png?version=1&modificationDate=1583318948077&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/09-image2020-3-4_11-47-55.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Bessere Einsichten liefert meist das backint.log bzw das backup.log"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/image2020-3-4_11-46-27.png?version=1&modificationDate=1583318948120&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/10-image2020-3-4_11-46-27.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Abschließend kann auch ein Blick auf das TSM Log Probleme identifizieren (Kommunikation zwischen TDP und TSM Server)"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Manuelle Datenbankverbindung anlegen"
+            },
+            {
+              "kind": "markdown",
+              "text": "(falls keine Managed System Configuration für DB durchgeführt wurde)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Auf I04 verbinden -> TA DBACOCKPIT -> Datenbankverbindungen -> hinzufügen"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/hana020.png?version=1&modificationDate=1583330590957&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/11-hana020.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "→ Testen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wechsel zu Systemkonfiguration -> Systemeintrag hinzufügen"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/thumbnails/67918776/hana020a.png?version=1&modificationDate=1583330590973&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/12-hana020a.png"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/hana021.png?version=1&modificationDate=1583330590990&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/14-hana021.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Datenbankverbindung angeben und speichern"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/67918776/hana022.png?version=1&modificationDate=1583330591007&api=v2",
+              "path": "images/post_transport/hana-solman-calendar/13-hana022.png"
+            }
+          ],
+          "title": "HowTo: SOLMAN Backup Kalender / DBA Planning Calendar",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67918776/HowTo+SOLMAN+Backup+Kalender+DBA+Planning+Calendar"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "HANA in HANA Cockpit hinzufügen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Um die HANA in HANA Cockpit hinzuzufügen kannst du dem folgenden Artikel folgen: **[HANA Cockpit: HANA hinzufügen](https://collab.dvb.bayern/spaces/TUMucc/pages/1559595178/HANA+Cockpit+HANA+hinzuf%C3%BCgen)**"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Backup einplanen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die folgenden Schritte werden nur für den Tenant der HANA Datenbank durchgeführt."
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke auf **UCC Landscape**oder unter der Überschrift **Monitor Landscape** auf **Database Directory**"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-26_10-26-48.png?version=1&modificationDate=1744364427483&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/02-image-2025-2-26_10-26-48.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Suche und wähle die HANA Datenbank aus?"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-25_17-23-13.png?version=1&modificationDate=1744364427573&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/01-image-2025-2-25_17-23-13.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "melde dich bei Beidem (SystemDB / Tenant) mit dem User **SYSTEM** an; PW → [Protokoll Hana-Installationen](https://collab.dvb.bayern/pages/viewpage.action?pageId=67919140)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-26_10-34-48.png?version=1&modificationDate=1744364427663&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/03-image-2025-2-26_10-34-48.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Administration"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-25_17-29-24.png?version=1&modificationDate=1744364427767&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/04-image-2025-2-25_17-29-24.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Backup schedules"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-25_17-29-57.png?version=1&modificationDate=1744364427873&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/05-image-2025-2-25_17-29-57.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Create Schedule (+ oben rechts)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-25_17-30-54.png?version=1&modificationDate=1744364428020&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/06-image-2025-2-25_17-30-54.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Schedule a Series of Backups"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-25_17-31-22.png?version=1&modificationDate=1744364428113&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/07-image-2025-2-25_17-31-22.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Gib einen aussagekräftigen Namen ein (z.b. *Weekly File Backup W65@W65* für den Tenant)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-2-25_17-32-46.png?version=1&modificationDate=1744364428327&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/08-image-2025-2-25_17-32-46.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Gib folgende Backup Settings ein:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Backup Type: Complete"
+            },
+            {
+              "kind": "markdown",
+              "text": "Destination Type: Backint"
+            },
+            {
+              "kind": "markdown",
+              "text": "Backup Prefix: COMPLETE_DATA_BACKUP"
+            },
+            {
+              "kind": "markdown",
+              "text": "Comment: Z.B. *Weekly File Backup W65@W65*"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-4-11_11-50-3.png?version=1&modificationDate=1744365003083&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/09-image-2025-4-11_11-50-3.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Weekly"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-4-11_11-51-38.png?version=1&modificationDate=1744365098900&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/10-image-2025-4-11_11-51-38.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Suche in der [Kundensystemzuordnung (SharePoint)](https://collab.dvb.bayern/spaces/TUMucc/pages/1016006080/Kundensystemzuordnung+SharePoint) in der Tabelle Backup Schedule einen freien Zeitpunkt. Trage dort deine HANA Datenbank (Tenant) ein."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-4-11_11-53-19.png?version=1&modificationDate=1744365199837&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/12-image-2025-4-11_11-53-19.png"
+            },
+            {
+              "items": [
+                "wähle als **Time Zone** *Europe(Berlin)*",
+                "trage bei **Create Backups At** dem Zeitpunkt ein, den du in der Kundensystemzuordnung ausgewählt und eingetragen hast",
+                "klicke bei **Create Backups On (UTC)** den Wochentag aus, den du in der Kundensystemzuordnung verwendet hast"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "kind": "note",
+              "text": "Bei Einplanungen zwischen 00:00 und 01:00 kann (auch später) Verwirrung wegen dem Wochentag aufkommen, weil die Einplanung in UTC Zeit stattfindet."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-4-11_11-58-12.png?version=1&modificationDate=1744365492327&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/11-image-2025-4-11_11-58-12.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Review und prüfe die eingetragenen Daten"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1559595206/image-2025-4-11_11-58-56.png?version=1&modificationDate=1744365536450&api=v2",
+              "path": "images/post_transport/hana-cockpit-weekly/13-image-2025-4-11_11-58-56.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Speicher den Schedule"
+            }
+          ],
+          "title": "HANA Cockpit: Wöchentliches Backup (backint) einplanen",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/1559595206/HANA+Cockpit+W%C3%B6chentliches+Backup+backint+einplanen"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "In diesem Artikel wird erklärt, wie man ein monatliches Backup auf ein NFS Laufwerk einplant."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Prüfen ob NFS eingebunden ist + gegebenenfalls NFS einbinden"
+            },
+            {
+              "kind": "markdown",
+              "text": "Prüfe ob der Ordner /global/backup existiert. Falls er nicht existiert kannst du folgendem Artikel folgen: [neues NFS (fstab) für Backup](https://collab.dvb.bayern/spaces/TUMucc/pages/1355943364/neues+NFS+fstab+f%C3%BCr+Backup)"
+            },
+            {
+              "kind": "markdown",
+              "text": "Das NFS /global/backup ist auf einer LPAR auf der XIV."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Ordner auf dem NFS erstellen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Erstelle einen Ordner für dein System auf dem NFS."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "HANA in HANA Cockpit hinzufügen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Um die HANA in HANA Cockpit hinzuzufügen kannst du dem folgenden Artikel folgen: **[HANA Cockpit: HANA hinzufügen](https://collab.dvb.bayern/spaces/TUMucc/pages/1559595178/HANA+Cockpit+HANA+hinzuf%C3%BCgen)**"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Backup einplanen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die folgenden Schritte werden für die SystemDB und jeden Tenant der HANA Datenbank durchgeführt."
+            },
+            {
+              "kind": "markdown",
+              "text": "Klicke unter der Überschrift **Monitor Landscape** auf **Database Directory**"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-26_10-26-48.png?version=1&modificationDate=1740562008327&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/01-image-2025-2-26_10-26-48.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Suche und wähle die HANA Datenbank aus?"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-23-13.png?version=1&modificationDate=1740500593240&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/02-image-2025-2-25_17-23-13.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "melde dich bei Beidem (SystemDB / Tenant) mit dem User **SYSTEM** an; PW → [Protokoll Hana-Installationen](https://collab.dvb.bayern/pages/viewpage.action?pageId=67919140)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-26_10-34-48.png?version=1&modificationDate=1740562488400&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/03-image-2025-2-26_10-34-48.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Administration"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-29-24.png?version=1&modificationDate=1740500964997&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/04-image-2025-2-25_17-29-24.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Backup schedules"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-29-57.png?version=1&modificationDate=1740500997407&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/05-image-2025-2-25_17-29-57.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Create Schedule (+ oben rechts)"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-30-54.png?version=1&modificationDate=1740501054217&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/07-image-2025-2-25_17-30-54.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Schedule a Series of Backups"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-31-22.png?version=1&modificationDate=1740501083110&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/06-image-2025-2-25_17-31-22.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Gib einen aussagekräftigen Namen ein (z.b. *Monthly File Backup W65@W65* für den Tenant und *Monthly File Backup SYS@W65* für die SystemDB )"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-32-46.png?version=1&modificationDate=1740501166427&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/08-image-2025-2-25_17-32-46.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Gib folgende Backup Settings ein:"
+            },
+            {
+              "kind": "note",
+              "text": "Wichtig:\n\nBackup Prefix: COMPLETE_DATA_BACKUP (Dadurch wird das Backup jeden Monat überschrieben)\n\nBackup Destination: Pfad zum Ordner deines Systems auf dem NFS. Den Unterordner /DB_<TENANT-SID>/ oder /SYSTEMDB/ kannst von dem vorgeschlagenen Pfad übernehmen\n\nz.b. /global/backup/GB/S65/DB_W65 oder /global/backup/GB/S65/SYSTEMDB"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-33-44.png?version=1&modificationDate=1740501224490&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/09-image-2025-2-25_17-33-44.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Monthly"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-41-27.png?version=1&modificationDate=1740501687313&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/10-image-2025-2-25_17-41-27.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Suche in der [Kundensystemzuordnung (SharePoint)](https://collab.dvb.bayern/spaces/TUMucc/pages/1016006080/Kundensystemzuordnung+SharePoint) in der Tabelle Monthly File Backup Schedule einen freien Zeitpunkt. Trage dort deine HANA Datenbank (Tenant/SYSDB) ein."
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-26_9-6-5.png?version=1&modificationDate=1740557165210&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/11-image-2025-2-26_9-6-5.png"
+            },
+            {
+              "items": [
+                "wähle als **Time Zone** *Europe(Berlin)*",
+                "trage bei **Create Backups At** dem Zeitpunkt ein, den du in der Kundensystemzuordnung ausgewählt und eingetragen hast",
+                "klicke bei **Create Backups On (UTC)** die Option *Week of Month* aus und wähle dahinter bei **Day of Week** den Wochentag aus, den du in der Kundensystemzuordnung verwendet hast"
+              ],
+              "kind": "list",
+              "ordered": false
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-45-0.png?version=1&modificationDate=1740501900870&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/12-image-2025-2-25_17-45-0.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Wähle Review und prüfe die eingetragenen Daten"
+            },
+            {
+              "alt": "",
+              "kind": "image",
+              "src": "https://collab.dvb.bayern/download/attachments/1433239668/image-2025-2-25_17-45-40.png?version=1&modificationDate=1740501940753&api=v2",
+              "path": "images/post_transport/hana-cockpit-monthly/13-image-2025-2-25_17-45-40.png"
+            },
+            {
+              "kind": "markdown",
+              "text": "Speicher den Schedule"
+            }
+          ],
+          "title": "Einplanung monatliches Backup auf NFS mit HANA Cockpit",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/1433239668/Einplanung+monatliches+Backup+auf+NFS+mit+HANA+Cockpit"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Hintergrund"
+            },
+            {
+              "kind": "markdown",
+              "text": "Die Applikationsserverprofile (RZ10 Parameter) eines S/4HANA Servers sind nicht in der HANA gespeichert. Dementsprechend werden sie auch nicht durch eine Backup der HANA abgedeckt."
+            },
+            {
+              "kind": "markdown",
+              "text": "Nachdem die Profile nicht oft geändert werden, meist nur direkt nach Installation oder bei Störungen, gibt es **kein regelmäßiges Backup** dieser Dateien."
+            },
+            {
+              "kind": "markdown",
+              "text": "Das LRZ speichert archivierte Dateien (im Gegensatz zu Backupdateien) 10 Jahre lang."
+            },
+            {
+              "kind": "note",
+              "text": "Immer wenn an einem Applikationsserverprofil etwas verändert wurde, muss der Ordner manuell archiviert werden."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Archivieren der Applikationsserverprofile"
+            },
+            {
+              "kind": "markdown",
+              "text": "Um den Ordner mit den Applikationsserverprofilen zu archivieren, kann der folgende Befehl ausgeführt werden. Man muss sich daraufhin anmelden: Benutzername = Nodename, Passwort = <retrieve from approved secret store>"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ndsmc archive /sapmnt/<SID>/profile/*"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Dateien wiederherstellen"
+            },
+            {
+              "kind": "markdown",
+              "text": "Mit fromdate und fromtime können bestimmte Dateien ausgewählt werden. Mit pick wird ein Auswahlfenster gestartet, in dem die verfügbaren Dateien ausgewählt werden können."
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nretrieve /path/to/folder/* (-fromdate=date) (-fromtime=time) /path/to/destination/ (-pick)\n\n#Beispiel: retrieve /sapmnt/Z65/profile/* -FROMDATE=09.04.2025 -fromtime=14:47:23 /test/ -pick"
+            }
+          ],
+          "title": "Backup/Archivierung der Profile eines Applikationsservers (RZ10 Parameter)",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/1643513973/Backup+Archivierung+der+Profile+eines+Applikationsservers+RZ10+Parameter"
+        },
+        {
+          "blocks": [
+            {
+              "kind": "markdown",
+              "text": "Diese Seite enthält Lösungssnippets für das Debugging des HANA Backups, keine vollständigen Anleitungen!"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Deinstallation TDP Client"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncd /opt/tivoli/tsm/tdp_hana/uninstall\n./uninstaller.bin\n#Folge den Schritten in der Konsole"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Deinstallation TSM Client"
+            },
+            {
+              "kind": "markdown",
+              "text": "SLES ppcle"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nzypper remove TIVsm-BAcit\nzypper remove TIVsm-BA\nzypper remove TIVsm-APIcit\nzypper remove TIVsm-API64\nzypper remove gskssl64\nzypper remove gskcrypt64\ncd /opt\nrm -R tivoli"
+            },
+            {
+              "kind": "markdown",
+              "text": "RHEL"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nyum remove TIVsm-BAcit\nyum remove TIVsm-BA\nyum remove TIVsm-APIcit\nyum remove TIVsm-API64\nyum remove gskssl64\nyum remove gskcrypt64\ncd /opt\nrm -R tivoli"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Error-Log für dsmc"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\ncat /usr/sap/<SID>/HDB<InstanzNummer>/backup/dsm_client.log"
+            },
+            {
+              "kind": "heading",
+              "level": 1,
+              "text": "Bekannte Fehler und deren Lösungen"
+            },
+            {
+              "kind": "table",
+              "rows": [
+                [
+                  "Problem",
+                  "Fehlermeldung",
+                  "Lösung"
+                ],
+                [
+                  "Failed to initialize SSL protocol",
+                  "Failed to initialize SSL protocol",
+                  "Setze das Passwort der Node zurück ([HowTo: TSM-Node Passwort zurücksetzen](https://collab.dvb.bayern/spaces/TUMucc/pages/67919084/HowTo+TSM-Node+Passwort+zur%C3%BCcksetzen)).Falls das nicht das Problem löst: Schreibe an Ticket an das LRZ ([LRZ Selfservice](https://servicedesk.lrz.de/de/selfservice)) mit der Bitte, die Verbindung zuzulassen."
+                ],
+                [
+                  "Environment variable not set",
+                  "BKI8629E: The 'SAPSYSTEMNAME' environment variable is not set.\nBKI1081E: Unable to detect the database environment.",
+                  "Führe den Befehl als Datenbankuser <sid>adm aus"
+                ],
+                [
+                  "Lizenzdatei fehlt",
+                  "BKI0455E: License file /usr/sap/Y75/SYS/global/hdb/opt/hdbconfig/agent.lic does not exist.",
+                  "Kopiere die agent.lic Datei von einem anderen SystemZeilenumbrüche aktivierenAls Text kopieren`scp root@s65lp1.ucc.cit.tum.de:/hana/shared/W65/global/hdb/opt/hdbconfig/agent.lic /shared/<SID>/global/hdb/opt/hdbconfig/agent.lic`"
+                ],
+                [
+                  "Datei oder Verzeichnis nicht gefunden",
+                  "BKI4008E: File '/usr/sap/W65/SYS/global/hdb/opt/hdbconfig/initW65.utl' cannot be opened. Reason:  errno(2)  Datei oder Verzeichnis nicht gefunden",
+                  "Prüfe die Existenz und Berechtigungen der angegebenen Datei"
+                ],
+                [
+                  "Zugriff verweigert",
+                  "ANS1087E (RC106)  Zugriff auf angegebene Datei oder Verzeichnis verweigert",
+                  "Prüfe die Existenz und Berechtigungen der Logdatei, die in dsm.sys angegeben ist.Zeilenumbrüche aktivierenAls Text kopieren`ERRORLOGNAME       /usr/sap/<SID>/HDB<Instanznummer>/backup/dsm_client.log`"
+                ]
+              ]
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Failed to initialize SSL protocol"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Fehlermeldung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "ANS1592E Failed to initialize SSL protocol."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Setze das Passwort der Node zurück ([HowTo: TSM-Node Passwort zurücksetzen](https://collab.dvb.bayern/spaces/TUMucc/pages/67919084/HowTo+TSM-Node+Passwort+zur%C3%BCcksetzen))."
+            },
+            {
+              "kind": "markdown",
+              "text": "Falls das nicht das Problem löst: Schreibe an Ticket an das LRZ ([LRZ Selfservice](https://servicedesk.lrz.de/de/selfservice)) mit der Bitte, die Verbindung zuzulassen."
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Environment variable not set"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Fehlermeldung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "BKI8629E: The 'SAPSYSTEMNAME' environment variable is not set.\nBKI1081E: Unable to detect the database environment."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Führe den Befehl als Datenbankbenutzer <sid>adm aus"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Lizenzdatei fehlt"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Fehlermeldung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "BKI0455E: License file /usr/sap/Y75/SYS/global/hdb/opt/hdbconfig/agent.lic does not exist."
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Kopiere die agent.lic Datei von einem anderen System"
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\nscp root@s65lp1.ucc.cit.tum.de:/hana/shared/W65/global/hdb/opt/hdbconfig/agent.lic /shared/<SID>/global/hdb/opt/hdbconfig/agent.lic"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Datei oder Verzeichnis nicht gefunden"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Fehlermeldung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "BKI4008E: File '/usr/sap/W65/SYS/global/hdb/opt/hdbconfig/initW65.utl' cannot be opened. Reason:  errno(2)  Datei oder Verzeichnis nicht gefunden"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Prüfe die Existenz und Berechtigungen der angegebenen Datei"
+            },
+            {
+              "kind": "heading",
+              "level": 2,
+              "text": "Zugriff verweigert"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Fehlermeldung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "ANS1087E (RC106)  Zugriff auf angegebene Datei oder Verzeichnis verweigert"
+            },
+            {
+              "kind": "heading",
+              "level": 3,
+              "text": "Lösung:"
+            },
+            {
+              "kind": "markdown",
+              "text": "Prüfe die Existenz und Berechtigungen der Logdatei, die in dsm.sys angegeben ist."
+            },
+            {
+              "kind": "code",
+              "text": "Zeilenumbrüche aktivieren\nAls Text kopieren\n  ERRORLOGNAME       /usr/sap/<SID>/HDB<Instanznummer>/backup/dsm_client.log"
+            }
+          ],
+          "title": "SAP HANA Backup / IBM Storage Protect Debugging",
+          "url": "https://collab.dvb.bayern/spaces/TUMucc/pages/67919549/SAP+HANA+Backup+IBM+Storage+Protect+Debugging"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[ssh]
+server = "deployuser@YOUR_SERVER_HOSTNAME_OR_IP"
+private_key_path = "~/.ssh/postinstall_deploy_key"
+known_hosts_path = "~/.ssh/known_hosts"
+port = 22
+connect_timeout_seconds = 10
+
+[features]
+allow_script_copy = false
+allow_session_system_addition = false
+
+[transport]
+remote_directory = "/path/to/transport/config"
+
+[sap_gui]
+executable_path = "C:/Program Files/SAP/FrontEnd/SAPgui/sapshcut.exe"
+instance_number = "00"
+
+[sap_gui.systems]
+ZXX = "sap-app.example.org"
+
+[hana_backup_defaults.ZXX]
+sid = "SXX"
